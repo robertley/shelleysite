@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+import './app.css'
 import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import App from './App'
@@ -17,9 +17,24 @@ class Root extends React.Component {
                 <div>
                     <Header />
                     <Switch>
-                        <Route exact path = "/" component={App} />
-                        <Route exact path = "/:city_name/" component={CityHome} />
-                        <Route exact path = "/:city_name/createevent/" component={CreateEvent} />
+                        <Route exact path = "/" 
+                            render={props => <App {...props}/> } 
+                        />
+                        <Route exact path = "/NYC/"
+                            render={props => 
+                                <CityHome 
+                                    city = "NYC"
+                                />
+                            } 
+                        />
+                        <Route exact path = "/NYC/CreateEvent/" component={CreateEvent} />
+                        <Route exact path = "/Philadelphia/"
+                            render={props => 
+                                <CityHome 
+                                    city = "Philadelphia"
+                                />
+                            } 
+                        />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

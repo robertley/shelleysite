@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <Link to={{ pathname: '/'}}><h1>Student Act</h1></Link>
+        <Link to={{ pathname: '/'}}><h1 className="student-act">Student Act</h1></Link>
       </div>
     )
   }

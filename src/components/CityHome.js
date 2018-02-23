@@ -6,17 +6,28 @@ class CityHome extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      city: this.props.match.params.city_name
+      city: this.props.city
     }
   }
 
   render() {
     return (
-      <div className="app">
-        <div className="app-body">
-          <h2>{this.state.city}</h2>
-            <Link to={{ pathname: `CreateEvent/`}}><h2>Create event</h2></Link>
-          <h2>View events</h2>
+      <div className="city-home">
+        <div className="city-home-body">
+          <div className="body-header">
+            <h2 className="events-h2">Events in {this.state.city}:</h2>
+            <Link to={{ pathname: `${this.state.city}/CreateEvent/`}}><h2 className= "create-event-h2">Create event</h2></Link>
+          </div>
+          <div className="city-home-events">
+            <div className="event-box">
+            </div>
+            <div className="event-box">
+            </div>
+            <div className="event-box">
+            </div>
+            <div className="event-box">
+            </div>
+          </div>
         </div>
       </div>
     )

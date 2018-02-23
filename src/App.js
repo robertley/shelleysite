@@ -2,12 +2,21 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 class App extends Component {
+
+  goToLink() {
+    this.props.history.push(`/${this.city.value}`)
+  }
+
   render() {
     return (
-      <div className="app">
-        <div className="app-body">
-          <h1>Pick a city:</h1>
-          <Link to={{ pathname: "/nyc/" }}><h3>NYC</h3></Link>
+      <div className="home">
+        <div className="home-body">
+          <h2>Pick a city:</h2>
+          <select ref={(node) => this.city = node}>
+            <option>NYC</option>
+            <option>Philadelphia</option>
+          </select><br/>
+          <button onClick={this.goToLink.bind(this)}>Go!</button>
         </div>
       </div>
     )
