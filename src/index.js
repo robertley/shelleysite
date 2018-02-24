@@ -20,14 +20,14 @@ class Root extends React.Component {
                         <Route exact path = "/" 
                             render={props => <App {...props}/> } 
                         />
-                        <Route exact path = "/NYC/"
+                        <Route exact path = "/NewYorkCity/"
                             render={props => 
                                 <CityHome 
-                                    city = "NYC"
+                                    city = "New York City"
                                 />
                             } 
                         />
-                        <Route exact path = "/NYC/CreateEvent/" component={CreateEvent} />
+                        <Route exact path = "/NewYorkCity/CreateEvent/" component={CreateEvent} />
                         <Route exact path = "/Philadelphia/"
                             render={props => 
                                 <CityHome 

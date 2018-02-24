@@ -81,7 +81,7 @@ class CreateEvent extends Component {
 
         return (
             <div className="create-event">
-                <div className="app-header">
+                <div className="create-event-header">
                     <h2>Create an Event</h2>
                 </div>
                 <div className="create-event-body">
