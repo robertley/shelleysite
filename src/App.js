@@ -22,8 +22,8 @@ class App extends Component {
             <option selected="selected" value="NewYorkCity">New York City</option>
             <option>Philadelphia</option>
             <option>Wilmington</option>
-          </select><br/>
-          <button onClick={this.goToLink.bind(this)}>Go!</button>
+          </select>
+          <button  className="go-button" onClick={this.goToLink.bind(this)}>Go!</button>
         </div>
       </div>
     )

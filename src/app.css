@@ -1,30 +1,57 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
   background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 .header {
-  text-align: center;
+  margin: 0;
+  background-color: #390667;
+}
+.header-components {
+  width: 800px;
+  display: block;
+  margin: 0 auto;
 }
 .header a {
   text-decoration: none;
 }
 .header h1 {
-  color: #390667;
+  display: inline-block;
+  color: white;
   font-weight: 500;
+  margin: 0;
+  margin-right: 40px;
+}
+.header-components h2 {
+  margin: 0;
+  color: white;
+  font-weight: 300;
+}
+.header-components h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.header-item {
+  display: inline-block;
+  margin: 0 20px;
+  height: 31px;
+  vertical-align: middle;
 }
 .student-act {
   font-size: 50px;
 }
 .home-body {
   text-align: center;
+  display: block;
+  margin: 20vh auto 0;
+  width: 800px;
+  height: 400px;
 }
 .home-body-desc {
-  display: block;
-  width: 640px;
-  margin: 0 auto;
+  margin: 80px auto 80px;
 }
 .home-body-desc h3 {
   font-weight: 200;
@@ -35,11 +62,14 @@ body {
 .home-body h2 {
   display: inline-block;
   margin-right: 10px;
+
 }
 .city-home-body {
   display: block;
-  width: 640px;
+  width: 760px;
   margin: 0 auto;
+  background-color: white;
+  padding: 20px;
 }
 .body-header {
   padding: 5px 0;
@@ -75,7 +105,48 @@ body {
   padding: 20px;
 }
 .select-city {
-  height: 25px;
+  height: 30px;
+  padding: 5px;
+  font-size: 14px;
   background-color: white;
   border: none;
+}
+.go-button {
+  height: 30px;
+  width: 50px;
+  margin-left: 10px;
+  border: none;
+  background-color: #390667;
+  color: white;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+}
+.about, .contact {
+  padding: 20px 0;
+  background-color: white;
+  width: 800px;
+  display: block; 
+  margin: 0 auto;
+}
+.about-header h2, .contact-header h2{
+  margin: 0;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* .about-image-1 {
+  width: 100vw;
+  position: absolute;
+  clip: rect(0px,100px,200px,0px);
+} */
+
+.about-image-1 {
+  width: 800px;
+}
+.about-body p, .about-body h3 {
+  padding: 0 20px;
+}
+.about-image-2 {
+  width: 300px;
+  image-orientation: from-image;
 }

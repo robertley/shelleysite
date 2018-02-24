@@ -8,6 +8,8 @@ import Header from './components/Header'
 import CreateEvent from './components/CreateEvent'
 import NotFound from './components/NotFound'
 import CityHome from './components/CityHome'
+import About from './components/About'
+import Contact from './components/Contact'
 
 class Root extends React.Component {
 
@@ -24,6 +26,7 @@ class Root extends React.Component {
                             render={props => 
                                 <CityHome 
                                     city = "New York City"
+                                    cityPath = "NewYorkCity"
                                 />
                             } 
                         />
@@ -32,9 +35,12 @@ class Root extends React.Component {
                             render={props => 
                                 <CityHome 
                                     city = "Philadelphia"
+                                    cityPath = "Philadelphia"
                                 />
                             } 
                         />
+                        <Route exact path = "/about" component={About} />
+                        <Route exact path = "/contact" component={Contact} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
