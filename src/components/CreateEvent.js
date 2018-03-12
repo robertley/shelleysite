@@ -9,7 +9,8 @@ class CreateEvent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            image: null
+            image: null,
+            city: this.props.city
         }
         this.handleImageUpload = this.handleImageUpload.bind(this)
     }
@@ -56,6 +57,7 @@ class CreateEvent extends Component {
     submitEvent(event) {
         event.preventDefault()
         console.log("event submitted")
+        console.log(this.title.value)
         axios({
             method: 'POST',
             url: 'http://localhost:8080/createEvent',
@@ -64,11 +66,12 @@ class CreateEvent extends Component {
                 'Content-Type': 'application/json'
             },
             data: { 
-                text: "text",
-                description: "desc",
-                location: "loc",
-                date: "2012-11-29 18:21:00",
-                image: "image"
+                title: this.title.value,
+                description: this.description.value,
+                location: this.location.value,
+                date: this.date.value,
+                image: this.state.image,
+                city: this.state.city
             }
         }).then(function (response) {
             console.log(response)

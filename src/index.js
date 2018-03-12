@@ -30,7 +30,13 @@ class Root extends React.Component {
                                 />
                             } 
                         />
-                        <Route exact path = "/NewYorkCity/CreateEvent/" component={CreateEvent} />
+                        <Route exact path = "/NewYorkCity/CreateEvent/" 
+                            render={props => 
+                                <CreateEvent
+                                    city = {1}
+                                />
+                            }
+                        />
                         <Route exact path = "/Philadelphia/"
                             render={props => 
                                 <CityHome 
