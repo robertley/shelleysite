@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import EventBox from './EventBox'
 
 class CityHome extends Component {
 
@@ -9,15 +10,17 @@ class CityHome extends Component {
     this.state = {
       city: this.props.city,
       cityPath: this.props.cityPath,
-      cityId: this.props.cityId
+      cityId: this.props.cityId,
+      events: null
     }
+    this.getEvents = this.getEvents.bind(this)
   }
 
   componentDidMount() {
-    this.getEvents()
+    this.getEvents(this)
   }
 
-  getEvents() {
+  getEvents(comp) {
     axios({
         method: 'GET',
         url: `http://localhost:8080/getEvents/${this.state.cityPath}`,
@@ -30,10 +33,29 @@ class CityHome extends Component {
         }
     }).then(function (response) {
         console.log(response)
+        comp.setState({
+          events: response.data
+        })
     }).catch(function (error) {
         console.log(error)
     })
-}
+  }
+  renderEvents() {
+    if (this.state.events === null) {
+      return <p>Loading...</p>
+    }
+    else {
+      const eventBoxes = this.state.events.map((eventData, index) => {
+        return (
+          <EventBox
+            data = {eventData}
+            key = {index}
+          />
+        )
+      })
+      return eventBoxes
+    }
+  }
 
   render() {
     return (
@@ -44,14 +66,7 @@ class CityHome extends Component {
             <Link to={{ pathname: `${this.state.cityPath}/CreateEvent/`}}><h2 className= "create-event-h2">Create event</h2></Link>
           </div>
           <div className="city-home-events">
-            <div className="event-box">
-            </div>
-            <div className="event-box">
-            </div>
-            <div className="event-box">
-            </div>
-            <div className="event-box">
-            </div>
+            {this.renderEvents()}
           </div>
         </div>
       </div>

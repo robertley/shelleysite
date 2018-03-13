@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { imgur } from 'imgur'
 import axios from 'axios'
+import '../createevent.css'
 
 class CreateEvent extends Component {
 
@@ -74,7 +75,10 @@ class CreateEvent extends Component {
                 location: this.location.value,
                 date: this.date.value,
                 image: this.state.image,
-                city: this.state.city
+                city: this.state.city,
+                cause: this.cause.value,
+                link: this.link.value,
+                contact: this.contact.value
             }
         }).then(function (response) {
             console.log(response)
@@ -100,6 +104,12 @@ class CreateEvent extends Component {
                         <input ref={(input) => {this.location = input}}  type="text" />
                         <p>Date:</p>
                         <input ref={(input) => {this.date = input}}  type="datetime-local" />
+                        <p>Cause:</p>
+                        <input ref={(input) => {this.cause = input}}  type="text" />
+                        <p>Link:</p>
+                        <input ref={(input) => {this.link = input}}  type="text" />
+                        <p>Contact:</p>
+                        <input ref={(input) => {this.contact = input}}  type="text" />
                         <p>Image (optional)</p>
                         <input ref={(input) => this.image = input} type="file" accept="image/*" data-max-size="5000" onChange={this.handleImageUpload}/>
                         <button type="submit">Submit!</button>

@@ -1,0 +1,18 @@
+.create-event-h2 {
+  float: right;
+}
+.create-event-header {
+  display: block;
+  width: 640px;
+  margin: 0 auto;
+}
+.create-event-header h2 {
+  margin: 0 0 5px;
+}
+.create-event-body {
+  width: 600px;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 20px;
+}
