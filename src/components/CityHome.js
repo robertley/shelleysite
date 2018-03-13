@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 class CityHome extends Component {
 
@@ -7,9 +8,32 @@ class CityHome extends Component {
     super(props)
     this.state = {
       city: this.props.city,
-      cityPath: this.props.cityPath
+      cityPath: this.props.cityPath,
+      cityId: this.props.cityId
     }
   }
+
+  componentDidMount() {
+    this.getEvents()
+  }
+
+  getEvents() {
+    axios({
+        method: 'GET',
+        url: `http://localhost:8080/getEvents/${this.state.cityPath}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        data: { 
+            cityId: this.state.cityId
+        }
+    }).then(function (response) {
+        console.log(response)
+    }).catch(function (error) {
+        console.log(error)
+    })
+}
 
   render() {
     return (

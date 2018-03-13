@@ -27,6 +27,7 @@ class Root extends React.Component {
                                 <CityHome 
                                     city = "New York City"
                                     cityPath = "NewYorkCity"
+                                    cityId = {1}
                                 />
                             } 
                         />

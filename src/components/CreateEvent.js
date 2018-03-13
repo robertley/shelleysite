@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { imgur } from 'imgur'
 import axios from 'axios'
-import mysql from 'mysql'
 
 class CreateEvent extends Component {
 
@@ -16,6 +15,7 @@ class CreateEvent extends Component {
     }
 
     handleImageUpload(event) {
+        // TODO image loading response
         event.preventDefault()
         console.log(event.target.files[0])
         var reader = new FileReader()
