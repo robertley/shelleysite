@@ -47,9 +47,12 @@ class CreateEvent extends Component {
             headers: {
                 'Authorization' : 'Client-ID ac3937fa56fc7e1',
             }
-        }).then(function (response) {
+        }).then(response => {
             console.log(response)
-        }).catch(function (error) {
+            this.setState({
+                image: response.data.data.link
+            })
+        }).catch(error => {
             console.log(error)
         })
     }
