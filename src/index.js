@@ -17,7 +17,6 @@ class Root extends React.Component {
         return (
             <Router>
                 <div>
-                    <Header />
                     <Switch>
                         <Route exact path = "/" 
                             render={props => <App {...props}/> } 
@@ -28,13 +27,17 @@ class Root extends React.Component {
                                     city = "New York City"
                                     cityPath = "NewYorkCity"
                                     cityId = {1}
+                                    {...props}
                                 />
                             } 
                         />
                         <Route exact path = "/NewYorkCity/CreateEvent/" 
                             render={props => 
                                 <CreateEvent
-                                    city = {1}
+                                    city = "New York City"
+                                    cityId = {1}
+                                    cityPath = "NewYorkCity"
+                                    {...props}
                                 />
                             }
                         />
@@ -43,6 +46,7 @@ class Root extends React.Component {
                                 <CityHome 
                                     city = "Philadelphia"
                                     cityPath = "Philadelphia"
+                                    {...props}
                                 />
                             } 
                         />

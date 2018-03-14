@@ -1,18 +1,75 @@
+p {
+  margin: 0;
+}
+.subtitle {
+  font-size: 10px;
+  color: #333333;
+}
 .create-event-h2 {
   float: right;
 }
 .create-event-header {
   display: block;
-  width: 640px;
+  width: 800px;
   margin: 0 auto;
 }
 .create-event-header h2 {
   margin: 0 0 5px;
 }
 .create-event-body {
-  width: 600px;
+  width: 760px;
   display: block;
   margin: 0 auto;
-  border: 1px solid black;
+  background-color: white;
   padding: 20px;
+}
+.forum-row-1, .forum-row-2, .forum-row-3, .forum-row-4 {
+  display: inline-block;
+  margin: 20px 0 10px;
+  height: 100%;
+}
+.forum-col-1, .forum-col-2, .forum-col-3, .forum-col-date {
+  float: left;
+  width: 220px;
+}
+.forum-col-1 input, .forum-col-2 input, .forum-col-3 input {
+  width: 220px;
+  height: 25px;
+}
+.forum-col-1, .forum-col-2 {
+  margin-right: 46px;
+}
+.date-input {
+  height: 28px;
+  width: 220px;
+}
+.forum-row-2 textarea {
+  width: 755px;
+  height: 100px;
+  text-align: top;
+  resize: none;
+}
+.required {
+  color: red;
+  font-weight: bold;
+}
+.required-desc1 {
+  color: red;
+  font-weight: bold;
+}
+.required-desc2 {
+  color: red;
+  font-size: 14px;
+}
+.header-span {
+  font-size: 26px;
+}
+.forum-row-4 {
+  width: 760px;
+}
+.forum-row-4 button {
+  float: right;
+}
+.forum-row-4 input {
+  margin-top: 5px;
 }

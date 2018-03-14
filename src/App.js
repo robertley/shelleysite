@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Header from './components/Header'
 
 class App extends Component {
 
@@ -10,6 +11,9 @@ class App extends Component {
   render() {
     return (
       <div className="home">
+        <Header 
+          history = {this.props.history}
+        />
         <div className="home-body">
           <div className="home-body-desc">
             <h3>Student Act is a forum to help you find events and oppurtunities to make change in your city! Search, post, and experience what it means to be a student activist.</h3>

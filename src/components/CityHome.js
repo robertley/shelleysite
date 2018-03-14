@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import EventBox from './EventBox'
+import Header from './Header'
 
 class CityHome extends Component {
 
@@ -56,10 +57,24 @@ class CityHome extends Component {
       return eventBoxes
     }
   }
+  newCityState(city, cityPath, cityId) {
+    this.setState({
+      city: city,
+      cityPath: cityPath,
+      cityId: cityId,
+      events: null
+    })
+  }
 
   render() {
     return (
       <div className="city-home">
+        <Header 
+          city = {this.state.city}
+          cityPath = {this.state.cityPath}
+          history = {this.props.history}
+          newCityState = {this.newCityState.bind(this)}
+        />
         <div className="city-home-body">
           <div className="body-header">
             <h2 className="events-h2">Events in {this.state.city}:</h2>

@@ -30,7 +30,6 @@ class EventBox extends Component {
         {this.state.description}
         {this.state.link}
         {this.state.title}
-        
       </div>
     )
   }

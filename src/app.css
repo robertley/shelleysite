@@ -6,43 +6,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
-.header {
-  margin: 0;
-  background-color: #390667;
-}
-.header-components {
-  width: 800px;
-  display: block;
-  margin: 0 auto;
-}
-.header a {
-  text-decoration: none;
-}
-.header h1 {
-  display: inline-block;
-  color: white;
-  font-weight: 500;
-  margin: 0;
-  margin-right: 40px;
-}
-.header-components h2 {
-  margin: 0;
-  color: white;
-  font-weight: 300;
-}
-.header-components h2:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-.header-item {
-  display: inline-block;
-  margin: 0 20px;
-  height: 31px;
-  vertical-align: middle;
-}
-.student-act {
-  font-size: 50px;
-}
+
 .home-body {
   text-align: center;
   display: block;
