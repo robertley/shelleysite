@@ -66,15 +66,13 @@ class Header extends Component {
       this.toggleDropdown()
     }
   }
-  render() {
+  renderDropdown() {
+    if (this.state.cityPath === undefined) {
+      return null
+    }
     return (
-      <div className="header">
-        <div className="header-components">
-          <Link to={{ pathname: `/${this.state.cityPath !== undefined ? this.state.cityPath : ""}`}}><h1 className="student-act">Student Act</h1></Link>
-          <div className="header-item-city">
-            <h3>{this.getCity()}</h3>
-          </div>
-          <div className="header-city-dropdown-button up" ref={(node) => {this.dropdownButton = node}} onClick={this.toggleDropdown.bind(this)} />
+      <span>
+        <div className="header-city-dropdown-button up" ref={(node) => {this.dropdownButton = node}} onClick={this.toggleDropdown.bind(this)} />
           <ul className="header-city-dropdown hidden" ref={(node) => {this.dropdown = node}}>
             <li>Boston</li>
             <li>Chicago</li>
@@ -84,8 +82,20 @@ class Header extends Component {
             <li>Wilmington</li>
             <li>Don't See Your City?</li>
           </ul>
+      </span>
+    )
+  }
+  render() {
+    return (
+      <div className="header">
+        <div className="header-components">
+          <Link to={{ pathname: `/${this.state.cityPath !== undefined ? this.state.cityPath : ""}`}}><h1 className="student-act">Student Act</h1></Link>
+          <div className="header-item-city">
+            <h3>{this.getCity()}</h3>
+          </div>
+          {this.renderDropdown()}
           <div className="header-item">
-            <Link to={{ pathname: '/about'}}><h2>About</h2></Link>
+            <Link to={{ pathname: '/about', state: { cityPath: this.state.cityPath, city: this.state.city } }}><h2>About</h2></Link>
           </div>
           <div className="header-item">
             <Link to={{ pathname: '/contact'}}><h2>Contact</h2></Link>

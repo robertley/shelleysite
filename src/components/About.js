@@ -4,10 +4,23 @@ import Michelle from '../photos/michelle.png'
 import Header from './Header'
 
 class About extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      cityPath: this.props.location.state.cityPath,
+      city: this.props.location.state.city
+    }
+  }
+
   render() {
     return (
       <div>
-        <Header />
+        <Header
+          cityPath = {this.state.cityPath}
+          city = {this.state.city}
+          history = {this.props.history}
+        />
         <div className="about">
           <div className="about-header">
               <h2>About</h2>
