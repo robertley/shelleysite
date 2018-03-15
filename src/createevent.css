@@ -10,14 +10,14 @@ p {
 }
 .create-event-header {
   display: block;
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
 }
 .create-event-header h2 {
   margin: 0 0 5px;
 }
 .create-event-body {
-  width: 760px;
+  width: 960px;
   display: block;
   margin: 0 auto;
   background-color: white;
@@ -30,24 +30,29 @@ p {
 }
 .forum-col-1, .forum-col-2, .forum-col-3, .forum-col-date {
   float: left;
-  width: 220px;
+  width: 285px;
 }
 .forum-col-1 input, .forum-col-2 input, .forum-col-3 input {
-  width: 220px;
+  width: 285px;
   height: 25px;
+  padding: 5px;
+  font-size: 16px;
 }
 .forum-col-1, .forum-col-2 {
   margin-right: 46px;
 }
 .date-input {
   height: 28px;
-  width: 220px;
+  width: 285px;
+  padding: 3px 0px 4px 10px;
 }
 .forum-row-2 textarea {
-  width: 755px;
+  width: 949px;
   height: 100px;
   text-align: top;
   resize: none;
+  padding: 5px;
+  font-size: 14px;
 }
 .required {
   color: red;
@@ -65,7 +70,7 @@ p {
   font-size: 26px;
 }
 .forum-row-4 {
-  width: 760px;
+  width: 960px;
 }
 .forum-row-4 button {
   float: right;

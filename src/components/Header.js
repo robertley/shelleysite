@@ -56,7 +56,7 @@ class Header extends Component {
   }
   changeCityNewYork() {
     if (this.state.cityPath !== "NewYorkCity") {
-      this.props.history.push('/NewYorKCity')
+      this.props.history.push('/NewYorkCity')
       this.props.newCityState('New York City', 'NewYorkCity', 1)
       this.setState({
         city: 'New York City',

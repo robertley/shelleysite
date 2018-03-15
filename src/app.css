@@ -11,7 +11,7 @@ body {
   text-align: center;
   display: block;
   margin: 20vh auto 0;
-  width: 800px;
+  width: 1000px;
   height: 400px;
 }
 .home-body-desc {
@@ -30,7 +30,7 @@ body {
 }
 .city-home-body {
   display: block;
-  width: 760px;
+  width: 960px;
   margin: 0 auto;
   background-color: white;
   padding: 20px;
@@ -63,7 +63,7 @@ body {
 .about, .contact {
   padding: 20px 0;
   background-color: white;
-  width: 800px;
+  width: 1000px;
   display: block; 
   margin: 0 auto;
 }
@@ -80,7 +80,7 @@ body {
 } */
 
 .about-image-1 {
-  width: 800px;
+  width: 1000px;
 }
 .about-body p, .about-body h3 {
   padding: 0 20px;

@@ -3,7 +3,7 @@
     background-color: #390667;
 }
 .header-components {
-    width: 800px;
+    width: 1000px;
     height: 65px;
     margin: 0 auto;
 }
@@ -28,7 +28,7 @@
 }
 .header-item {
     display: inline-block;
-    margin-left: 70px;
+    margin-left: 170px;
     padding-bottom: 10px;
     height: 31px;
     vertical-align: middle;
@@ -48,7 +48,7 @@
     padding: 5px;
     background-color: gray;
     position: absolute; 
-    left: calc((100vw - 800px)/2 + 320px);
+    left: calc((100vw - 1000px)/2 + 320px);
     height: auto;
     width: auto;
     z-index: 1;
@@ -99,7 +99,7 @@
 	border-right: 9px solid transparent;
 	border-bottom: 12px solid white;
     position: absolute;
-    left: calc((100vw - 800px)/2 + 475px);
+    left: calc((100vw - 1000px)/2 + 475px);
 }
 .up {
     top: 35px;
