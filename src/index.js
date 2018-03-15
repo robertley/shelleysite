@@ -10,6 +10,7 @@ import NotFound from './components/NotFound'
 import CityHome from './components/CityHome'
 import About from './components/About'
 import Contact from './components/Contact'
+import ConfirmEvent from './components/ConfirmEvent';
 
 class Root extends React.Component {
 
@@ -34,6 +35,16 @@ class Root extends React.Component {
                         <Route exact path = "/NewYorkCity/CreateEvent/" 
                             render={props => 
                                 <CreateEvent
+                                    city = "New York City"
+                                    cityId = {1}
+                                    cityPath = "NewYorkCity"
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/NewYorkCity/ConfirmEvent/" 
+                            render={props => 
+                                <ConfirmEvent
                                     city = "New York City"
                                     cityId = {1}
                                     cityPath = "NewYorkCity"
