@@ -151,7 +151,7 @@ class CreateEvent extends Component {
                                 <input ref={(input) => {this.cause = input}}  type="text" defaultValue={this.state.cause}/>
                             </div>
                             <div className="forum-col-date">
-                                <span>Date: </span><span className="required">* </span><span className="subtitle"> mm/dd/yyyy hh:mm AM/PM</span>
+                                <span>Date/Time: </span><span className="required">* </span><span className="subtitle"> mm/dd/yyyy hh:mm AM/PM</span>
                                 <input className="date-input" ref={(input) => {this.date = input}}  type="datetime-local" required defaultValue={this.state.date}/>
                             </div>
                         </div>

@@ -82,6 +82,10 @@ class Header extends Component {
             <li>Wilmington</li>
             <li>Don't See Your City?</li>
           </ul>
+          <div className="searchbar">
+            <input type="text" defaultValue={`Search events in ${this.state.city}`} />
+            <div className="search-button"/>
+          </div>
       </span>
     )
   }
@@ -94,11 +98,12 @@ class Header extends Component {
             <h3>{this.getCity()}</h3>
           </div>
           {this.renderDropdown()}
-          <div className="header-item">
+          
+          <div className="header-item1">
             <Link to={{ pathname: '/about', state: { cityPath: this.state.cityPath, city: this.state.city } }}><h2>About</h2></Link>
           </div>
-          <div className="header-item">
-            <Link to={{ pathname: '/contact'}}><h2>Contact</h2></Link>
+          <div className="header-item2">
+            <Link to={{ pathname: '/contact', state: { cityPath: this.state.cityPath, city: this.state.city }}}><h2>Contact</h2></Link>
           </div>
         </div>
       </div>
