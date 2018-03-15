@@ -70,35 +70,6 @@ class CreateEvent extends Component {
         })
     }
 
-    submitEvent(event) {
-        event.preventDefault()
-        console.log("event submitted")
-        console.log(this.title.value)
-        axios({
-            method: 'POST',
-            url: 'http://localhost:8080/createEvent',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            data: { 
-                title: this.title.value,
-                description: this.description.value,
-                location: this.location.value,
-                date: this.date.value,
-                image: this.state.image,
-                city: this.state.cityId,
-                cause: this.cause.value,
-                link: this.link.value,
-                contact: this.contact.value
-            }
-        }).then(function (response) {
-            console.log(response)
-        }).catch(function (error) {
-            console.log(error)
-        })
-    }
-
     newCityState(city, cityPath, cityId) {
         
     }
@@ -140,7 +111,7 @@ class CreateEvent extends Component {
                     <div className="create-event-header">
                         <span className="header-span">Create an Event </span><span className="required-desc1">*</span><span className="required-desc2"> - required</span>
                     </div>
-                    <form onSubmit={this.nothing}>
+                    <form>
                         <div className="forum-row-1">
                             <div className="forum-col-1">
                                 <span>Title: </span><span className="required">*</span>
@@ -176,7 +147,7 @@ class CreateEvent extends Component {
                         <div className="forum-row-4">
                             <p>Image:</p>
                             <input ref={(input) => this.image = input} type="file" accept="image/*" data-max-size="5000" onChange={this.handleImageUpload}/>
-                            <button type="submit" onClick={this.goToConfirm.bind(this)}>Finish</button>                        
+                            <button type="button" onClick={this.goToConfirm.bind(this)}>Finish</button>                        
                         </div>
                     </form>
                 </div>

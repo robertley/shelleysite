@@ -78,7 +78,7 @@ class CityHome extends Component {
         <div className="city-home-body">
           <div className="body-header">
             <h2 className="events-h2">Events in {this.state.city}:</h2>
-            <Link to={{ pathname: `${this.state.cityPath}/CreateEvent/`}}><h2 className= "create-event-h2">Create event</h2></Link>
+            <Link to={{ pathname: `/${this.state.cityPath}/CreateEvent/`}}><h2 className= "create-event-h2">Create event</h2></Link>
           </div>
           <div className="city-home-events">
             {this.renderEvents()}

@@ -25,11 +25,14 @@ class ConfirmEvent extends Component {
             imageFileName: this.props.location.state.imageFileName,
             eventSubmitted: false
         }
+        this.submitEvent = this.submitEvent.bind(this)
+        this.goBack = this.goBack.bind(this)
     }
 
 
     submitEvent(event) {
         event.preventDefault()
+        console.log("hello")
         var self = this
         axios({
             method: 'POST',
@@ -94,8 +97,8 @@ class ConfirmEvent extends Component {
                         <div className="confirm-field"><span className="confirm-category">Link: </span><span>{this.state.link}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Contact: </span><span>{this.state.contact}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Image:<br/></span><img src={this.state.image} alt=""/></div>
-                        <button onClick={this.goBack.bind(this)}>Edit Event</button>
-                        <button onClick={this.submitEvent.bind(this)}>Submit!</button>
+                        <button onClick={this.goBack}>Edit Event</button>
+                        <button onClick={this.submitEvent}>Submit!</button>
                     </div>
                 </div>
             )
