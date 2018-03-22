@@ -23,13 +23,20 @@ class EventBox extends Component {
         <div className="event-box-image">
           <img className="test" src={this.state.image} />
         </div>
-        {this.state.title}
-        {this.state.city}
-        {this.state.contact}
-        {this.state.date}
-        {this.state.description}
-        {this.state.link}
-        {this.state.title}
+        {/* TODO text overflow ... */}
+        <h3 className="event-title">{this.state.title}</h3>
+        <h3 className="event-date">March 28th, 3:00 PM</h3>
+        <br/>
+        <div className="row-2">
+          <div className="event-cause"><span className="title">Cause: </span><span>{this.state.cause}</span></div>
+          <div className="event-location"><span className="title">Location: </span><span>{this.state.location}</span></div>
+        </div>
+        <div className="row-3">
+          {this.state.description}
+        </div>
+        <div className="row-4">
+          <span className="title">Contact: </span><span>{this.state.contact}</span>
+        </div>
       </div>
     )
   }

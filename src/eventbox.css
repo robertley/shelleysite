@@ -1,20 +1,74 @@
 .event-box {
   margin: 10px 0;
   display: block;
-  width: 740px;
-  height: 130px;
-  border: 1px solid black;
+  width: 940px;
+  height: 230px;
+  border: 1px solid #bdbdbd;
   padding: 10px;
+}
+.event-box:hover {
+  background-color: #f6f6f6;
+  cursor: pointer;
 }
 .event-box-image {
   float: left;
-  height: 128px;
-  width: 128px;
-  border: 1px solid black;
+  height: 228px;
+  width: 228px;
+  /* border: 1px solid #bdbdbd; */
   
 }
 .test {
   object-fit: cover;
-  height: 128px;
-  width: 128px;
+  height: 230px;
+  width: 230px;
+}
+.event-title {
+  display: inline-block;
+  margin: 0 0 0 10px;
+  /* color: #333333; */
+}
+.event-body {
+  display: block;
+  margin: 10px;
+  padding-left: 130px;
+}
+.event-date {
+  float: right;
+  margin: 0 0 0 10px;
+  /* color: #333333; */
+}
+.row-2 {
+  display: inline-block;
+  margin: 5px 0 0 10px;
+  width: 700px;
+}
+.title {
+  font-weight: bold;
+  color: #333333;
+}
+.event-location {
+  float: right;
+  text-align: right;
+}
+.event-cause {
+  float: left;
+}
+.row-3 {
+  display: block;
+  float: right;
+  margin: 0;
+  width: 698px;
+  height: 164px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-size: 13px;
+  color: #333333;
+}
+.event-description {
+}
+.row-4 {
+  display: inline-block;
+  margin-left: 10px;
 }

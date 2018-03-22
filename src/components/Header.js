@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../header.css'
+import FaSearch from 'react-icons/lib/fa/search'
 
 class Header extends Component {
   constructor(props) {
@@ -83,8 +84,10 @@ class Header extends Component {
             <li>Don't See Your City?</li>
           </ul>
           <div className="searchbar">
-            <input type="text" defaultValue={`Search events in ${this.state.city}`} />
-            <div className="search-button"/>
+            <input type="text" placeholder={`Search events in ${this.state.city}`} />
+            <div className="search-button">
+              <FaSearch />
+            </div>
           </div>
       </span>
     )

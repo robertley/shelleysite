@@ -26,8 +26,11 @@ class CityHome extends Component {
         method: 'GET',
         url: `http://localhost:8080/getEvents/${this.state.cityPath}`,
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            // 'Accept': 'application/json',
+            // 'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': 'http://localhost:3000',
+            // 'Access-Control-Allow-Methods': 'GET',
+            // 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
         },
         data: { 
             cityId: this.state.cityId
