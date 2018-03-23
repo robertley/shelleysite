@@ -1,6 +1,11 @@
 .header {
     margin: 0;
-    background-color: #390667;
+    /* background-color: #ededed; */
+    /* background-color: #a1c4fd; */
+    /* background-color: #9498; */
+    /* background-color: #990000; */
+    /* background-color: #4d0000; */
+    background-color: #32b8b8;
 }
 .header-components {
     width: 1000px;
@@ -48,7 +53,8 @@
     vertical-align: top;
     border-radius: 15px 0 0 15px;
     padding-left: 10px;
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
+    background-color: white;
     color: black;
     padding-top: 7px;
     font-size: 12px;
