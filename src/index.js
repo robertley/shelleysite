@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './app.css'
+import './styles/app.css'
 import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import App from './App'
@@ -10,7 +10,8 @@ import NotFound from './components/NotFound'
 import CityHome from './components/CityHome'
 import About from './components/About'
 import Contact from './components/Contact'
-import ConfirmEvent from './components/ConfirmEvent';
+import ConfirmEvent from './components/ConfirmEvent'
+import EventPage from './components/EventPage'
 
 class Root extends React.Component {
 
@@ -52,9 +53,9 @@ class Root extends React.Component {
                                 />
                             }
                         />
-                        <Route exact path = "/NewYorkCity/about"
+                        <Route exact path = "/NewYorkCity/event/:event_id"
                             render={props => 
-                                <About
+                                <EventPage
                                     city = "New York City"
                                     cityPath = "NewYorkCity"
                                     {...props}

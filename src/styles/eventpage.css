@@ -1,0 +1,25 @@
+.event-page-body {
+    width: 960px;
+    display: block;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+}
+.event-page-header {
+    width: 1000px;
+    display: block;
+    margin: 0 auto;
+    background-color: white;
+}
+.header-image {
+    object-fit: cover;
+  height: 300px;
+  width: 1000px;
+}
+.header-title {
+    position: absolute;
+    top: 275px;
+    left: calc((100% - 1000px)/2 + 10px);
+    background-color: rgba(255, 255, 255, .8);
+    padding: 10px;
+}

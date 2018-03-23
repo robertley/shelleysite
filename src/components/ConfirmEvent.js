@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { imgur } from 'imgur'
 import axios from 'axios'
 import Header from './Header'
-import '../createevent.css'
+import '../styles/createevent.css'
 
 class ConfirmEvent extends Component {
 
