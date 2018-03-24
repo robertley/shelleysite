@@ -19,6 +19,7 @@ p {
   margin: 0 auto;
   background-color: white;
   padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .forum-row-1, .forum-row-2, .forum-row-3, .forum-row-4 {
   display: inline-block;

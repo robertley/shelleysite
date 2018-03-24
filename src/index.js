@@ -12,6 +12,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import ConfirmEvent from './components/ConfirmEvent'
 import EventPage from './components/EventPage'
+import DontSeeYourCity from './components/DontSeeYourCity'
 
 class Root extends React.Component {
 
@@ -73,6 +74,13 @@ class Root extends React.Component {
                         />
                         <Route exact path = "/about" component={About} />
                         <Route exact path = "/contact" component={Contact} />
+                        <Route exact path = "/DontSeeYourCity/"
+                            render={props => 
+                                <DontSeeYourCity 
+                                    {...props}
+                                />
+                            } 
+                        />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

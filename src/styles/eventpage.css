@@ -4,12 +4,15 @@
     margin: 0 auto;
     background-color: white;
     padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .event-page-header {
     width: 1000px;
     display: block;
     margin: 0 auto;
     background-color: white;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+
 }
 .header-image {
     object-fit: cover;
@@ -22,4 +25,11 @@
     left: calc((100% - 1000px)/2 + 10px);
     background-color: rgba(255, 255, 255, .8);
     padding: 10px;
+}
+.bottom-row {
+    display: inline-block;
+    width: 100%;
+}
+.bottom-row button {
+    float: right;
 }

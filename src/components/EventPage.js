@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import '../styles/eventpage.css'
+import { Link } from 'react-router-dom'
 
 class EventPage extends Component {
   constructor(props) {
@@ -33,7 +34,16 @@ class EventPage extends Component {
           <h1 className="header-title">{this.state.title}</h1>
         </div>
         <div className="event-page-body">
-          {this.state.cause}
+          <span className="title">Date/Time: </span>{this.state.date}<br/><br/>
+          <span className="title">Location: </span>{this.state.location}<br/><br/>
+          <span className="title">Cause: </span>{this.state.cause}<br/><br/>
+          <span className="title">Description: </span><br/>{this.state.description}<br/><br/>
+          <span className="title">Contact: </span>{this.state.contact}<br/><br/>
+          {/* TODO make link work */}
+          <div className="bottom-row">
+            <a href={`${this.state.link}`}>{this.state.link}</a>
+            <button>Back</button>
+          </div>
         </div>
 			</div>
 		)

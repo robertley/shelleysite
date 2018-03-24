@@ -27,6 +27,9 @@
     color: white;
     font-weight: 300;
 }
+.header-components h3:hover {
+    cursor: pointer;
+}
 .header-components h2:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -93,7 +96,8 @@
 .header-city-dropdown {
     list-style-type: none;
     padding: 5px;
-    background-color: gray;
+    background-color: #299494;
+    /* background-color: darkgray; */
     position: absolute; 
     left: calc((100vw - 1000px)/2 + 313px);
     height: auto;
@@ -101,10 +105,13 @@
     z-index: 1;
 }
 .header-city-dropdown li {
-    color: black;
+    /* color:black; */
+    color: white;
 }
 .header-city-dropdown li:hover {
-    color:white;
+    /* color:black */
+    color: #333333;
+    /* color:white; */
     cursor: pointer;
 }
 .visible {
@@ -200,4 +207,58 @@
 }
 .header-city-dropdown-button:hover {
     cursor: pointer;
+}
+.launch-message {
+    background-color: #f8f8f8;
+    border: 3px solid #c8c8c8;
+    position: absolute;
+    top: 78px;
+    border-radius: 4px;
+    font-family: 'Satisfy', cursive;
+    width: 130px;
+    text-align: center;
+    padding: 10px 20px;
+    animation: bob 1s infinite;
+}
+  .launch-message .arrow {
+    border-style: solid;
+    position: absolute;
+}
+ 
+.bottom {
+    border-color: transparent transparent #c8c8c8 transparent;
+    border-width: 0px 11px 11px 11px;
+    top: -11px;
+    right: 10px;
+}
+.bottom:after {
+    border-color:transparent transparent #f8f8f8 transparent;
+    border-style: solid;
+    border-width: 0px 7px 7px 7px;
+    top: 4px;
+    content: "";
+    position: absolute;
+    left: -7px;
+}
+
+@keyframes bob {
+    0% {
+        top: 78px;
+    }
+    50% {
+        top: 83px;
+    }
+    100% {
+        top: 78px;
+    }
+}
+@media all and (max-width: 1000px) {
+    .launch-message {
+        left: 336px;
+    }
+}
+@media all and (min-width: 1001px) {
+    .launch-message {
+        left: calc((100vw - 1000px)/2 + 330px);
+    }
 }

@@ -10,9 +10,21 @@ class Header extends Component {
       city: this.props.city,
       cityPath: this.props.cityPath,
       toggled: false,
+      firstLaunch: false
     }
     this.changeCityPhiladelphia = this.changeCityPhiladelphia.bind(this)
-    this.changeCityNewYork= this.changeCityNewYork.bind(this)
+    this.changeCityNewYork = this.changeCityNewYork.bind(this)
+    this.changeDontSeeCity = this.changeDontSeeCity.bind(this)
+  }
+  componentDidMount() {
+    if (localStorage.getItem("new_user") === null && !this.state.firstLaunch)
+      this.toggleFirstLaunch()
+  }
+  toggleFirstLaunch() {
+    localStorage.setItem("new_user", 1)
+    this.setState({
+      firstLaunch: true
+    })
   }
   getCity() {
     if (this.state.city !== undefined) {
@@ -67,6 +79,25 @@ class Header extends Component {
       this.toggleDropdown()
     }
   }
+  changeDontSeeCity() {
+    this.props.history.push({
+      pathname: '/DontSeeYourCity',
+      state: { 
+        cityPath: this.state.cityPath, 
+        city: this.state.city 
+      }
+    })
+    this.toggleDropdown()
+  }
+  renderFirstLaunchBubble() {
+    if (this.state.firstLaunch)
+      return (
+        <div className="launch-message">
+          <div class="arrow bottom right"></div>
+            Pick a city and start making a difference!
+        </div>
+      )
+  }
   renderDropdown() {
     if (this.state.cityPath === undefined) {
       return null
@@ -81,7 +112,7 @@ class Header extends Component {
             <li onClick={this.changeCityNewYork}>New York City</li>
             <li onClick={this.changeCityPhiladelphia}>Philadelphia</li>
             <li>Wilmington</li>
-            <li>Don't See Your City?</li>
+            <li onClick={this.changeDontSeeCity}>Don't See Your City?</li>
           </ul>
           <div className="searchbar">
             <input type="text" placeholder={`Search events in ${this.state.city}`} />
@@ -93,12 +124,13 @@ class Header extends Component {
     )
   }
   render() {
+    // todo header scroll bug
     return (
       <div className="header">
         <div className="header-components">
           <Link to={{ pathname: `/${this.state.cityPath !== undefined ? this.state.cityPath : ""}`}}><h1 className="student-act">Student Act</h1></Link>
           <div className="header-item-city">
-            <h3>{this.getCity()}</h3>
+            <h3 onClick={this.toggleDropdown.bind(this)} >{this.getCity()}</h3>
           </div>
           {this.renderDropdown()}
           
@@ -109,6 +141,7 @@ class Header extends Component {
             <Link to={{ pathname: '/contact', state: { cityPath: this.state.cityPath, city: this.state.city }}}><h2>Contact</h2></Link>
           </div>
         </div>
+        {this.renderFirstLaunchBubble()}
       </div>
     )
   }

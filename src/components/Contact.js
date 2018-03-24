@@ -22,6 +22,10 @@ class Contact extends Component {
         <div className="contact">
           <div className="contact-header">
             <h2>Contact</h2>
+            <div>
+              {/* TODO make email clickable */}
+              <span className="contact-stuff">For any questions concerns or comments you may contact us at studentactmail@gmail.com</span>
+            </div>
           </div>
         </div>
       </div>
