@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import '../header.css'
+import '../styles/header.css'
 import FaSearch from 'react-icons/lib/fa/search'
 
 class Header extends Component {
