@@ -4,6 +4,9 @@ import axios from 'axios'
 import EventBox from './EventBox'
 import Header from './Header'
 
+// var server = "http://localhost:8080"
+var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
+
 class CityHome extends Component {
 
   constructor(props) {
@@ -28,7 +31,7 @@ class CityHome extends Component {
   getEvents(comp) {
     axios({
         method: 'GET',
-        url: `http://localhost:8080/getEvents/${this.state.cityPath}`,
+        url: `${server}/getEvents/${this.state.cityPath}`,
         headers: {
             // 'Accept': 'application/json',
             // 'Content-Type': 'application/json',
