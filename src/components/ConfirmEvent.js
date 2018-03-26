@@ -5,6 +5,9 @@ import axios from 'axios'
 import Header from './Header'
 import '../styles/createevent.css'
 
+// var server = "http://localhost:8080"
+var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
+
 class ConfirmEvent extends Component {
 
     constructor(props) {
@@ -18,7 +21,7 @@ class ConfirmEvent extends Component {
             description: this.props.location.state.description,
             location: this.props.location.state.location,
             date: this.props.location.state.date,
-            image: this.props.location.state.image,
+            imageLink: this.props.location.state.imageLink,
             cause: this.props.location.state.cause,
             link: this.props.location.state.link,
             contact: this.props.location.state.contact,
@@ -32,25 +35,24 @@ class ConfirmEvent extends Component {
 
     submitEvent(event) {
         event.preventDefault()
-        console.log("hello")
         var self = this
         axios({
             method: 'POST',
-            url: 'http://localhost:8080/createEvent',
+            url: `${server}/createEvent`,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             data: { 
-                title: this.state.title,
-                description: this.state.description,
-                location: this.state.location,
-                date: this.state.date,
-                image: this.state.image,
-                city: this.state.cityId,
-                cause: this.state.cause,
-                link: this.state.link,
-                contact: this.state.contact
+                title: this.state.title, // 60 chars
+                description: this.state.description, // 1000 chars
+                location: this.state.location, // 60 char
+                date: this.state.date, // DATETIME
+                image: this.state.imageLink, // 120 chars
+                city: this.state.cityId, // 2 int
+                cause: this.state.cause, // 80 chars
+                link: this.state.link, // 60 chars
+                contact: this.state.contact // 60 chars
             }
         }).then(function (response) {
             console.log(response)
@@ -72,7 +74,7 @@ class ConfirmEvent extends Component {
                 description: this.state.description,
                 location: this.state.location,
                 date: this.state.date,
-                image: this.state.image,
+                imageLink: this.state.imageLink,
                 city: this.state.cityId,
                 cause: this.state.cause,
                 link: this.state.link,
@@ -96,7 +98,7 @@ class ConfirmEvent extends Component {
                         <div className="confirm-field"><span className="confirm-category">Location: </span><span>{this.state.location}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Link: </span><span>{this.state.link}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Contact: </span><span>{this.state.contact}</span></div>
-                        <div className="confirm-field"><span className="confirm-category">Image:<br/></span><img src={this.state.image} alt=""/></div>
+                        <div className="confirm-field"><span className="confirm-category">Image:<br/></span><img src={this.state.imageLink} alt=""/></div>
                         <button onClick={this.goBack}>Edit Event</button>
                         <button onClick={this.submitEvent}>Submit!</button>
                     </div>

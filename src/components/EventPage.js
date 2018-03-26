@@ -3,6 +3,8 @@ import Header from './Header'
 import '../styles/eventpage.css'
 import { Link } from 'react-router-dom'
 
+// TODO create a server call for when link is accessed not through eventbox
+
 class EventPage extends Component {
   constructor(props) {
     super(props)

@@ -18,11 +18,12 @@ class CreateEvent extends Component {
             description: this.props.location.state === undefined ? "" : this.props.location.state.description,
             location: this.props.location.state === undefined ? "" : this.props.location.state.location,
             date: this.props.location.state === undefined ? "" : this.props.location.state.date,
-            image: this.props.location.state === undefined ? "" : this.props.location.state.image,
+            image: null,
             cause: this.props.location.state === undefined ? "" : this.props.location.state.cause,
             link: this.props.location.state === undefined ? "" : this.props.location.state.link,
             contact: this.props.location.state === undefined ? "" : this.props.location.state.contact,
-            imageFileName: this.props.location.state === undefined ? "" : this.props.location.state.imageFileName
+            imageFileName: this.props.location.state === undefined ? "" : this.props.location.state.imageFileName,
+            imageLink: this.props.location.state === undefined ? "" : this.props.location.state.imageLink
         }
         this.handleImageUpload = this.handleImageUpload.bind(this)
     }
@@ -38,7 +39,6 @@ class CreateEvent extends Component {
             self.setState({
                 image: upload.target.result
             }, function() {
-                console.log(self.state.image);
                 self.postToImgur()
             })
         }
@@ -63,7 +63,7 @@ class CreateEvent extends Component {
         }).then(response => {
             console.log(response)
             this.setState({
-                image: response.data.data.link
+                imageLink: response.data.data.link
             })
         }).catch(error => {
             console.log(error)
@@ -75,6 +75,8 @@ class CreateEvent extends Component {
     }
 
     goToConfirm() {
+        console.log(this.state.image)
+        console.log(this.state.imageFileName)
         if (this.title.value !== "" && this.date.value !== "")
             this.props.history.push({
                 pathname: `/${this.state.cityPath}/ConfirmEvent`,
@@ -83,7 +85,7 @@ class CreateEvent extends Component {
                     description: this.description.value,
                     location: this.location.value,
                     date: this.date.value,
-                    image: this.state.image,
+                    imageLink: this.state.imageLink,
                     imageFileName: this.image.value,
                     city: this.state.cityId,
                     cause: this.cause.value,

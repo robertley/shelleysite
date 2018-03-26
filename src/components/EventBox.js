@@ -9,8 +9,8 @@ class EventBox extends Component {
       cause: this.props.data.cause,
       city: this.props.data.city,
       contact: this.props.data.contact,
-      // date: this.props.data.date,
-      date: "March 28th, 3:00 PM",
+      date: this.props.data.date,
+      // date: "March 28th, 3:00 PM",
       description: this.props.data.description,
       image: this.props.data.image,
       link: this.props.data.link,
@@ -32,7 +32,7 @@ class EventBox extends Component {
     return (
       <div className="event-box" onClick={this.goToEventPage.bind(this)}>
         <div className="event-box-image">
-          <img className="test" src={this.state.image} />
+          <img className="test" src={this.state.image} alt="image"/>
         </div>
         {/* TODO text overflow ... */}
         <h3 className="event-title">{this.state.title}</h3>

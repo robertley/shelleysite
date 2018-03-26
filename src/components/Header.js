@@ -40,8 +40,10 @@ class Header extends Component {
       this.dropdownButton.classList.remove('down')
       const self = this
       setTimeout(function() { 
-        self.dropdown.classList.add('hidden')
-        self.dropdown.classList.remove('almostHidden')
+        if (self.dropdown !== null) {
+          self.dropdown.classList.add('hidden')
+          self.dropdown.classList.remove('almostHidden')
+        }
       }, 700)
     }
     else {
@@ -70,7 +72,8 @@ class Header extends Component {
   changeCityNewYork() {
     if (this.state.cityPath !== "NewYorkCity") {
       this.props.history.push('/NewYorkCity')
-      this.props.newCityState('New York City', 'NewYorkCity', 1)
+      if (this.props.newCityState !== undefined)
+        this.props.newCityState('New York City', 'NewYorkCity', 1)
       this.setState({
         city: 'New York City',
         cityPath: 'NewYorkCity',

@@ -28,19 +28,16 @@ class CityHome extends Component {
     localStorage.setItem("default_city", `${this.state.cityPath}`)
   }
 
-  getEvents(comp) {
+  getEvents(comp, cityId) {
+    var id = (cityId === undefined ? this.state.cityId : cityId)
+    console.log(id)
+    console.log(cityId)
     axios({
         method: 'GET',
-        url: `${server}/getEvents/${this.state.cityPath}`,
-        headers: {
-            // 'Accept': 'application/json',
-            // 'Content-Type': 'application/json',
-            // 'Access-Control-Allow-Origin': 'http://localhost:3000',
-            // 'Access-Control-Allow-Methods': 'GET',
-            // 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-        },
-        data: { 
-            cityId: this.state.cityId
+        // url: `${server}/getEvents/${this.state.cityPath}`,
+        url: `${server}/getEvents`,
+        headers: { 
+            cityId: id
         }
     }).then(function (response) {
         console.log(response)
@@ -90,6 +87,7 @@ class CityHome extends Component {
       cityId: cityId,
       events: null
     })
+    this.getEvents(this, cityId)
   }
 
   render() {

@@ -67,10 +67,40 @@ class Root extends React.Component {
                             render={props => 
                                 <CityHome 
                                     city = "Philadelphia"
+                                    cityId = {2}
                                     cityPath = "Philadelphia"
                                     {...props}
                                 />
                             } 
+                        />
+                        <Route exact path = "/Philadelphia/CreateEvent/" 
+                            render={props => 
+                                <CreateEvent
+                                    city = "Philadelphia"
+                                    cityId = {2}
+                                    cityPath = "Philadelphia"
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/Philadelphia/ConfirmEvent/" 
+                            render={props => 
+                                <ConfirmEvent
+                                    city = "Philadelphia"
+                                    cityId = {2}
+                                    cityPath = "Philadelphia"
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/Philadelphia/event/:event_id"
+                            render={props => 
+                                <EventPage
+                                    city = "Philadelphia"
+                                    cityPath = "Philadelphia"
+                                    {...props}
+                                />
+                            }
                         />
                         <Route exact path = "/about" component={About} />
                         <Route exact path = "/contact" component={Contact} />
