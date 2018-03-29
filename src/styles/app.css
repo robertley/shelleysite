@@ -46,6 +46,17 @@ body {
   display: inline-block;
   margin: 0;
 }
+.body-header h3 {
+  display: inline-block;
+  margin: 0 0 0 20px;
+}
+.body-header .selected {
+  text-decoration: underline;
+  color: #333333;
+}
+.body-header .unselected {
+  cursor: pointer;
+}
 .select-city {
   height: 30px;
   padding: 5px;

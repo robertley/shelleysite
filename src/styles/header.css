@@ -5,12 +5,14 @@
     /* background-color: #9498; */
     /* background-color: #990000; */
     /* background-color: #4d0000; */
+    width: 100%;
     background-color: #32b8b8;
 }
 .header-components {
     width: 1000px;
     height: 65px;
     margin: 0 auto;
+    background-color: #32b8b8;
 }
 .header a {
     text-decoration: none;
@@ -214,7 +216,10 @@
     position: absolute;
     top: 78px;
     border-radius: 4px;
-    font-family: 'Satisfy', cursive;
+    /* font-family: 'Satisfy', cursive; */
+    /* font-family: 'Kalam', cursive; */
+    font-family: 'Caveat Brush', cursive;
+    
     width: 130px;
     text-align: center;
     padding: 10px 20px;

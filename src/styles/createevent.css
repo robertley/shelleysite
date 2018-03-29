@@ -76,6 +76,15 @@ p {
 .forum-row-4 input {
   margin-top: 5px;
 }
+.please-wait {
+  font-size: 14px;
+  display: inline-block;
+}
+.upload-failed {
+  font-size: 14px;
+  display: inline-block;
+  color: red;
+}
 /* --------------------------- */
 .confirm-event {
   margin-top: 20px;

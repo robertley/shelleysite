@@ -23,7 +23,9 @@ class CreateEvent extends Component {
             link: this.props.location.state === undefined ? "" : this.props.location.state.link,
             contact: this.props.location.state === undefined ? "" : this.props.location.state.contact,
             imageFileName: this.props.location.state === undefined ? "" : this.props.location.state.imageFileName,
-            imageLink: this.props.location.state === undefined ? "" : this.props.location.state.imageLink
+            imageLink: this.props.location.state === undefined ? "" : this.props.location.state.imageLink,
+            pleaseWait: false,
+            imageUploadFailed: false
         }
         this.handleImageUpload = this.handleImageUpload.bind(this)
     }
@@ -31,6 +33,10 @@ class CreateEvent extends Component {
     handleImageUpload(event) {
         // TODO image loading response
         event.preventDefault()
+        this.setState({
+            pleaseWait: true,
+            imageUploadFailed: false
+        })
         console.log(event.target.files[0])
         var reader = new FileReader()
         var file = event.target.files[0]
@@ -63,10 +69,15 @@ class CreateEvent extends Component {
         }).then(response => {
             console.log(response)
             this.setState({
-                imageLink: response.data.data.link
+                imageLink: response.data.data.link,
+                pleaseWait: false
             })
         }).catch(error => {
             console.log(error)
+            this.setState({
+                pleaseWait: false,
+                imageUploadFailed: true
+            })
         })
     }
 
@@ -77,7 +88,7 @@ class CreateEvent extends Component {
     goToConfirm() {
         console.log(this.state.image)
         console.log(this.state.imageFileName)
-        if (this.title.value !== "" && this.date.value !== "")
+        if (this.title.value !== "" && this.date.value !== "" && !this.state.pleaseWait)
             this.props.history.push({
                 pathname: `/${this.state.cityPath}/ConfirmEvent`,
                 state: {
@@ -95,8 +106,17 @@ class CreateEvent extends Component {
             })
     }
 
-    nothing() {
-
+    pleaseWaitRender() {
+        if (this.state.pleaseWait)
+            return (
+                <div className="please-wait">Image is uploading... please wait a second before submitting.</div>
+            )
+    }
+    imageUploadFailedRender() {
+        if (this.state.imageUploadFailed)
+            return (
+                <div className="upload-failed">Your image upload failed. Please try again or use a different image.</div>
+            )
     }
     
     render() {
@@ -149,6 +169,8 @@ class CreateEvent extends Component {
                         <div className="forum-row-4">
                             <p>Image:</p>
                             <input ref={(input) => this.image = input} type="file" accept="image/*" data-max-size="5000" onChange={this.handleImageUpload}/>
+                            {this.pleaseWaitRender()}
+                            {this.imageUploadFailedRender()}
                             <button type="button" onClick={this.goToConfirm.bind(this)}>Finish</button>                        
                         </div>
                     </form>

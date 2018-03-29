@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/eventbox.css'
+import { IntlProvider, FormattedDate } from 'react-intl'
 
 class EventBox extends Component {
   constructor(props) {
@@ -36,7 +37,15 @@ class EventBox extends Component {
         </div>
         {/* TODO text overflow ... */}
         <h3 className="event-title">{this.state.title}</h3>
-        <h3 className="event-date">{this.state.date}</h3>
+        <IntlProvider locale="en"><h3 className="event-date">
+          <FormattedDate 
+            value={this.state.date} 
+            day="numeric"
+            month="long"
+            year="numeric"
+            hour="numeric"
+            minute="numeric"/> 
+          </h3></IntlProvider>
         <br/>
         <div className="row-2">
           <div className="event-cause"><span className="title">Cause: </span><span>{this.state.cause}</span></div>

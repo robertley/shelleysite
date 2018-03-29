@@ -15,9 +15,12 @@ class CityHome extends Component {
       city: this.props.city,
       cityPath: this.props.cityPath,
       cityId: this.props.cityId,
-      events: null
+      events: null,
+      upcoming: true,
+      newEvents: false
     }
     this.getEvents = this.getEvents.bind(this)
+    this.clickNew = this.clickNew.bind(this)
   }
 
   componentDidMount() {
@@ -89,7 +92,28 @@ class CityHome extends Component {
     })
     this.getEvents(this, cityId)
   }
-
+  renderBodyHeader() {
+    if (this.state.upcoming)
+      return(
+        <span>
+          <h3 className="selected">Upcoming Events</h3>
+          <h3 className="unselected" onClick={this.clickNew}>New Events</h3>
+        </span>
+      )
+    else
+      return(
+        <span>
+          <h3 className="unselected" onClick={this.clickNew}>Upcoming Events</h3>
+          <h3 className="selected">New Events</h3>
+        </span>
+      )
+  }
+  clickNew() {
+    this.setState({
+      upcoming: !this.state.upcoming,
+      newEvents: !this.state.newEvents
+    })
+  }
   render() {
     return (
       <div className="city-home">
@@ -102,6 +126,7 @@ class CityHome extends Component {
         <div className="city-home-body">
           <div className="body-header">
             <h2 className="events-h2">Events in {this.state.city}:</h2>
+            {this.renderBodyHeader()}
             <Link to={{ pathname: `/${this.state.cityPath}/CreateEvent/`}}><h2 className= "create-event-h2">Create event</h2></Link>
           </div>
           <div className="city-home-events">
