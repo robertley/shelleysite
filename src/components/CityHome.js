@@ -21,6 +21,7 @@ class CityHome extends Component {
     }
     this.getEvents = this.getEvents.bind(this)
     this.clickNew = this.clickNew.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   componentDidMount() {
@@ -31,16 +32,17 @@ class CityHome extends Component {
     localStorage.setItem("default_city", `${this.state.cityPath}`)
   }
 
-  getEvents(comp, cityId) {
+  getEvents(comp, cityId, upcoming) {
     var id = (cityId === undefined ? this.state.cityId : cityId)
-    console.log(id)
-    console.log(cityId)
+    var isUpcoming = (upcoming === undefined ? this.state.upcoming : upcoming)
+    console.log(isUpcoming)
     axios({
         method: 'GET',
         // url: `${server}/getEvents/${this.state.cityPath}`,
         url: `${server}/getEvents`,
         headers: { 
-            cityId: id
+            cityId: id,
+            upcoming: isUpcoming
         }
     }).then(function (response) {
         console.log(response)
@@ -114,6 +116,20 @@ class CityHome extends Component {
       newEvents: !this.state.newEvents
     })
   }
+  handleSelect() {
+    console.log(this.select.selectedIndex)
+    var upcomingBool = false
+    if (this.select.selectedIndex === 0) {
+      upcomingBool = true
+    }
+    console.log(upcomingBool)
+    this.setState({
+      upcoming: !this.state.upcoming,
+      newEvents: !this.state.newEvents,
+      events: null
+    })
+    this.getEvents(this, undefined, upcomingBool)
+  }
   render() {
     return (
       <div className="city-home">
@@ -126,8 +142,9 @@ class CityHome extends Component {
         <div className="city-home-body">
           <div className="body-header">
             <h2 className="events-h2">Events in {this.state.city}:</h2>
-            {this.renderBodyHeader()}
-            <Link to={{ pathname: `/${this.state.cityPath}/CreateEvent/`}}><h2 className= "create-event-h2">Create event</h2></Link>
+            <h3>Sort By</h3><select ref={(node) => this.select = node} onChange={this.handleSelect}><option>Upcoming</option><option>New</option></select>
+            {/* {this.renderBodyHeader()} */}
+            <Link to={{ pathname: `/${this.state.cityPath}/CreateEvent/`, state: { test : true }}}><h2 className= "create-event-h2">Create event</h2></Link>
           </div>
           <div className="city-home-events">
             {this.renderEvents()}

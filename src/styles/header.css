@@ -158,6 +158,14 @@
     /* position: absolute;
     left: calc((100vw - 1000px)/2 + 475px); */
 }
+.first-up {
+    top: 35px;
+    -webkit-transform: rotate(-90deg);
+     -moz-transform: rotate(-90deg);
+     -ms-transform: rotate(-90deg);
+     transform: rotate(-90deg);
+     /* animation: turnUp .5s 1; */
+}
 .up {
     top: 35px;
     -webkit-transform: rotate(-90deg);

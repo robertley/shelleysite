@@ -13,6 +13,9 @@ import Contact from './components/Contact'
 import ConfirmEvent from './components/ConfirmEvent'
 import EventPage from './components/EventPage'
 import DontSeeYourCity from './components/DontSeeYourCity'
+import Admin from './components/Admin'
+import AdminHome from './components/AdminHome'
+import Unauthorized from './components/Unauthorized'
 
 class Root extends React.Component {
 
@@ -30,6 +33,7 @@ class Root extends React.Component {
                                     city = "New York City"
                                     cityPath = "NewYorkCity"
                                     cityId = {1}
+                                    cityHome = {true}
                                     {...props}
                                 />
                             } 
@@ -40,6 +44,7 @@ class Root extends React.Component {
                                     city = "New York City"
                                     cityId = {1}
                                     cityPath = "NewYorkCity"
+                                    cityHome = {false}
                                     {...props}
                                 />
                             }
@@ -50,6 +55,7 @@ class Root extends React.Component {
                                     city = "New York City"
                                     cityId = {1}
                                     cityPath = "NewYorkCity"
+                                    cityHome = {false}
                                     {...props}
                                 />
                             }
@@ -59,6 +65,7 @@ class Root extends React.Component {
                                 <EventPage
                                     city = "New York City"
                                     cityPath = "NewYorkCity"
+                                    cityHome = {false}
                                     {...props}
                                 />
                             }
@@ -69,6 +76,7 @@ class Root extends React.Component {
                                     city = "Philadelphia"
                                     cityId = {2}
                                     cityPath = "Philadelphia"
+                                    cityHome = {true}
                                     {...props}
                                 />
                             } 
@@ -79,6 +87,7 @@ class Root extends React.Component {
                                     city = "Philadelphia"
                                     cityId = {2}
                                     cityPath = "Philadelphia"
+                                    cityHome = {false}
                                     {...props}
                                 />
                             }
@@ -89,6 +98,7 @@ class Root extends React.Component {
                                     city = "Philadelphia"
                                     cityId = {2}
                                     cityPath = "Philadelphia"
+                                    cityHome = {false}
                                     {...props}
                                 />
                             }
@@ -98,18 +108,55 @@ class Root extends React.Component {
                                 <EventPage
                                     city = "Philadelphia"
                                     cityPath = "Philadelphia"
+                                    cityHome = {false}
                                     {...props}
                                 />
                             }
                         />
-                        <Route exact path = "/about" component={About} />
-                        <Route exact path = "/contact" component={Contact} />
+                        <Route exact path = "/about" 
+                            render={props => 
+                                <About
+                                    cityHome = {false}
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/contact" 
+                            render={props => 
+                                <Contact
+                                    cityHome = {false}
+                                    {...props}
+                                />
+                            }
+                        />
                         <Route exact path = "/DontSeeYourCity/"
                             render={props => 
-                                <DontSeeYourCity 
+                                <DontSeeYourCity
+                                    cityHome = {false}  
                                     {...props}
                                 />
                             } 
+                        />
+                        <Route exact path = "/admin" 
+                            render={props => 
+                                <Admin
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/admin/true" 
+                            render={props => 
+                                <AdminHome
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/admin/false" 
+                            render={props => 
+                                <Unauthorized
+                                    {...props}
+                                />
+                            }
                         />
                         <Route component={NotFound} />
                     </Switch>

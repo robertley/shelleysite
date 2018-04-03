@@ -10,11 +10,13 @@ class Header extends Component {
       city: this.props.city,
       cityPath: this.props.cityPath,
       toggled: false,
-      firstLaunch: false
+      firstLaunch: false,
+      dropDownButtonClass: this.props.cityHome ? "up" : "first-up"
     }
     this.changeCityPhiladelphia = this.changeCityPhiladelphia.bind(this)
     this.changeCityNewYork = this.changeCityNewYork.bind(this)
     this.changeDontSeeCity = this.changeDontSeeCity.bind(this)
+    this.renderSearch = this.renderSearch.bind(this)
   }
   componentDidMount() {
     if (localStorage.getItem("new_user") === null && !this.state.firstLaunch)
@@ -50,6 +52,7 @@ class Header extends Component {
       this.dropdown.classList.add('visible')
       this.dropdown.classList.remove('hidden')
       this.dropdownButton.classList.add('down')
+      this.dropdownButton.classList.remove('first-up')
       this.dropdownButton.classList.remove('up')
     }
     this.setState({
@@ -107,7 +110,7 @@ class Header extends Component {
     }
     return (
       <span>
-        <div className="header-city-dropdown-button up" ref={(node) => {this.dropdownButton = node}} onClick={this.toggleDropdown.bind(this)} />
+        <div className={`header-city-dropdown-button ${this.state.dropDownButtonClass}`} ref={(node) => {this.dropdownButton = node}} onClick={this.toggleDropdown.bind(this)} />
           <ul className="header-city-dropdown hidden" ref={(node) => {this.dropdown = node}}>
             <li>Boston</li>
             <li>Chicago</li>
@@ -121,10 +124,22 @@ class Header extends Component {
             <input type="text" placeholder={`Search events in ${this.state.city}`} />
             <div className="search-button">
               <FaSearch />
-            </div>
           </div>
+        </div>
       </span>
     )
+  }
+  renderSearch() {
+    // if (this.state.city !== "admin") {
+    if (true)
+      return(
+        <div className="searchbar">
+          <input type="text" placeholder={`Search events in ${this.state.city}`} />
+          <div className="search-button">
+            <FaSearch />
+          </div>
+        </div>
+      )
   }
   render() {
     // todo header scroll bug

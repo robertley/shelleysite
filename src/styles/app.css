@@ -48,14 +48,26 @@ body {
 }
 .body-header h3 {
   display: inline-block;
-  margin: 0 0 0 20px;
+  margin: 0 10px 0 20px;
+}
+.body-header select {
+  font-size: 16px;
 }
 .body-header .selected {
   text-decoration: underline;
-  color: #333333;
+  /* color: white; */
+  /* color: #333333; */
+  color:  #299494;
+  /* background-color: #32b8b8; */
+  /* background-color: #299494; */
+  padding: 0 5px;
+  border-radius: 4px;
 }
 .body-header .unselected {
   cursor: pointer;
+  color: #333333;
+  border-radius: 4px;
+  padding: 0 5px;
 }
 .select-city {
   height: 30px;
@@ -87,7 +99,7 @@ body {
 .about {
   padding: 0 0 20px;
 }
-.about-header h2, .contact-header h2{
+.about-header h2, .contact-header h2 {
   margin: 0;
   font-size: 36px;
   text-align: center;

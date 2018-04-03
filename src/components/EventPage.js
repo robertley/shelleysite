@@ -3,8 +3,10 @@ import Header from './Header'
 import '../styles/eventpage.css'
 import { Link } from 'react-router-dom'
 import { IntlProvider, FormattedDate } from 'react-intl'
+import axios from 'axios'
 
-// TODO create a server call for when link is accessed not through eventbox
+var server = "http://localhost:8080"
+// var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
 
 class EventPage extends Component {
   constructor(props) {
@@ -21,9 +23,36 @@ class EventPage extends Component {
       link: this.props.location.state === undefined ? null : this.props.location.state.data.link,
       contact: this.props.location.state === undefined ? null : this.props.location.state.data.contact
     }
+    this.getEventInfo = this.getEventInfo.bind(this)
+  }
+  componentDidMount() {
+    if (this.state.title === null) //if data wasn't carried over from CityHome
+      this.getEventInfo()
+  }
+  getEventInfo() {
+    var self = this
+    axios({
+      method: 'GET',
+      url: `${server}/getEventById`,
+      headers: { 
+          eventId: this.props.match.params.event_id,
+      }
+    }).then(function (response) {
+        self.setState({
+          title: response.data[0].title,
+          cause: response.data[0].cause,
+          contact: response.data[0].contact,
+          date: response.data[0].date,
+          description: response.data[0].description,
+          image: response.data[0].image,
+          link: response.data[0].link,
+          location: response.data[0].location
+        })
+    }).catch(function (error) {
+        console.log(error)
+    })
   }
 	render() {
-    console.log(this.props.location.state)
 		return (
 			<div className="event-page">
 				<Header 

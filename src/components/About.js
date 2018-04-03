@@ -8,8 +8,8 @@ class About extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      cityPath: this.props.location.state.cityPath,
-      city: this.props.location.state.city
+      cityPath: this.props.location.state === undefined ? "NewYorkCity" : this.props.location.state.cityPath,
+      city: this.props.location.state === undefined ? "New York City" : this.props.location.state.city
     }
   }
 

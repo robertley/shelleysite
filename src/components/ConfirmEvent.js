@@ -44,15 +44,15 @@ class ConfirmEvent extends Component {
                 'Content-Type': 'application/json'
             },
             data: { 
-                title: this.state.title, // 60 chars
-                description: this.state.description, // 1000 chars
-                location: this.state.location, // 60 char
+                title: this.state.title.replace(/'/g, "\\\'"), // 60 chars
+                description: this.state.description.replace(/'/g, "\\\'"), // 1000 chars
+                location: this.state.location.replace(/'/g, "\\\'"), // 60 char
                 date: this.state.date, // DATETIME
                 image: this.state.imageLink, // 120 chars
                 city: this.state.cityId, // 2 int
-                cause: this.state.cause, // 80 chars
+                cause: this.state.cause.replace(/'/g, "\\\'"), // 80 chars
                 link: this.state.link, // 60 chars
-                contact: this.state.contact // 60 chars
+                contact: this.state.contact.replace(/'/g, "\\\'") // 60 chars
             }
         }).then(function (response) {
             console.log(response)
