@@ -7,7 +7,7 @@ p {
 }
 .create-event-header {
   display: block;
-  width: 1000px;
+  width: 960px;
   margin: 0 auto;
 }
 .create-event-header h2 {
@@ -104,4 +104,7 @@ p {
 }
 .confirm-field {
   margin-bottom: 10px;
+}
+.admin-city-name {
+  float: right;
 }

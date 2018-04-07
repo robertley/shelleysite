@@ -8,6 +8,12 @@ body {
   background-color: #ededed;
   /* background-color: #a1c4fd; */
 }
+.home {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+}
 .home-body {
   text-align: center;
   display: block;

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Header from './Header'
-import '../styles/admin.css'
+import Header from './../Header'
+import '../../styles/admin.css'
 import axios from 'axios'
-import { truncate } from 'fs';
+import config from "../../config.json"
 
-var server = "http://localhost:8080"
-// var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
+// var server = "http://localhost:8081"
+var server = config.server
 
 class Admin extends Component {
 
@@ -92,7 +92,7 @@ class Admin extends Component {
           <div className="admin-header">
             <h2>Admin Login</h2>
             <div className="password">
-                <span>Password: </span><input ref={(node) => {this.password = node}}  type="text"/>
+                <span>Password: </span><input ref={(node) => {this.password = node}} type="password"/>
                 <button onClick={this.trySignIn}>Submit</button><br/><br/>
                 {this.incorrectPassword()}
             </div>

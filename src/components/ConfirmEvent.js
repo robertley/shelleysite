@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { imgur } from 'imgur'
 import axios from 'axios'
 import Header from './Header'
 import '../styles/createevent.css'
+import config from "../config.json"
+import { IntlProvider, FormattedDate } from 'react-intl'
 
-// var server = "http://localhost:8080"
-var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
+// var server = "http://localhost:8081"
+var server = config.server
 
 class ConfirmEvent extends Component {
 
@@ -26,16 +27,51 @@ class ConfirmEvent extends Component {
             link: this.props.location.state.link,
             contact: this.props.location.state.contact,
             imageFileName: this.props.location.state.imageFileName,
-            eventSubmitted: false
+            eventSubmitted: false,
+            admin: this.props.admin,
+            isSignedIn: false
         }
         this.submitEvent = this.submitEvent.bind(this)
         this.goBack = this.goBack.bind(this)
+        this.adminSubmit = this.adminSubmit.bind(this)
     }
-
+    componentDidMount() {
+        if (!this.state.isSignedIn && this.state.admin)
+          this.checkSignIn()
+    }
+    checkSignIn() { // TODO make more secure
+        var self = this
+        axios({
+            method: 'GET',
+            url: `${server}/checksigninadmin`,
+            headers: { 
+            token: localStorage.getItem("token")
+            }
+        }).then(function (response) {
+            self.handleResponse(response.data)
+        }).catch(function (error) {
+            console.log(error)
+        })
+    }
+    handleResponse(res) {
+        if (!res.signedIn)
+          this.props.history.push({
+            pathname: `/admin/false`,
+          })
+        else {
+          this.setState({
+            isSignedIn: true
+          })
+        }
+    }
 
     submitEvent(event) {
         event.preventDefault()
         var self = this
+        var admin = this.state.admin
+        var isPosted = 0
+        if (admin)
+            isPosted = 1
         axios({
             method: 'POST',
             url: `${server}/createEvent`,
@@ -44,21 +80,24 @@ class ConfirmEvent extends Component {
                 'Content-Type': 'application/json'
             },
             data: { 
-                title: this.state.title.replace(/'/g, "\\\'"), // 60 chars
-                description: this.state.description.replace(/'/g, "\\\'"), // 1000 chars
-                location: this.state.location.replace(/'/g, "\\\'"), // 60 char
+                title: this.state.title.replace(/'/g, "\\'"), // 60 chars
+                description: this.state.description.replace(/'/g, "\\'"), // 1000 chars
+                location: this.state.location.replace(/'/g, "\\'"), // 60 char
                 date: this.state.date, // DATETIME
                 image: this.state.imageLink, // 120 chars
                 city: this.state.cityId, // 2 int
-                cause: this.state.cause.replace(/'/g, "\\\'"), // 80 chars
+                cause: this.state.cause.replace(/'/g, "\\'"), // 80 chars
                 link: this.state.link, // 60 chars
-                contact: this.state.contact.replace(/'/g, "\\\'") // 60 chars
+                contact: this.state.contact.replace(/'/g, "\\'"), // 60 chars
+                isPosted: isPosted
             }
         }).then(function (response) {
-            console.log(response)
-            self.setState({
-                eventSubmitted: true
-            })
+            if (admin)
+                self.adminSubmit()
+            else
+                self.setState({
+                    eventSubmitted: true
+                })
         }).catch(function (error) {
             self.setState({ // TODO change behavior
                 eventSubmitted: true
@@ -67,8 +106,13 @@ class ConfirmEvent extends Component {
         })
     }
     goBack() {
+        var url
+        if (this.state.admin)
+            url = `/admin/${this.state.cityPath}/CreateEvent`
+        else
+            url = `/${this.state.cityPath}/CreateEvent`
         this.props.history.push({
-            pathname: `/${this.state.cityPath}/CreateEvent`,
+            pathname: url,
             state: {
                 title: this.state.title,
                 description: this.state.description,
@@ -83,6 +127,9 @@ class ConfirmEvent extends Component {
             }
         })
     }
+    adminSubmit() {
+        this.props.history.push(`/admin/${this.state.cityPath}`)
+    }
     renderBody() {
         if (!this.state.eventSubmitted) {
             return (
@@ -93,14 +140,23 @@ class ConfirmEvent extends Component {
                     <div className="confirm-event">
                         <div className="confirm-field"><span className="confirm-category">Title: </span><span>{this.state.title}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Cause: </span><span>{this.state.cause}</span></div>
-                        <div className="confirm-field"><span className="confirm-category">Date: </span><span>{this.state.date}</span></div>
+                        <div className="confirm-field"><span className="confirm-category">Date: </span><span>
+                            <IntlProvider locale="en">
+                            <FormattedDate 
+                                value={this.state.date} 
+                                day="numeric"
+                                month="long"
+                                year="numeric"
+                                hour="numeric"
+                                minute="numeric"/> 
+                            </IntlProvider></span></div>
                         <div className="confirm-field"><span className="confirm-category">Description: <br/></span><span>{this.state.description}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Location: </span><span>{this.state.location}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Link: </span><span>{this.state.link}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Contact: </span><span>{this.state.contact}</span></div>
                         <div className="confirm-field"><span className="confirm-category">Image:<br/></span><img src={this.state.imageLink} alt=""/></div>
                         <button onClick={this.goBack}>Edit Event</button>
-                        <button onClick={this.submitEvent}>Submit!</button>
+                        <button onClick={this.submitEvent}>Submit</button>
                     </div>
                 </div>
             )
@@ -116,7 +172,7 @@ class ConfirmEvent extends Component {
     }
     
     render() {
-
+        if (!this.state.admin || this.state.isSignedIn)
         return (
             <div className="create-event">
                 <Header 
@@ -128,6 +184,7 @@ class ConfirmEvent extends Component {
                 {this.renderBody()}
             </div>
         )
+        else return null
     }
 }
 

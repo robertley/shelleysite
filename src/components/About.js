@@ -26,7 +26,7 @@ class About extends Component {
               <h2>About</h2>
           </div> */}
           <div className="event-page-header">
-            <img class="header-image" src={MarchWithoutWomen}/>
+            <img class="header-image" src={MarchWithoutWomen} alt="march"/>
             <h1 className="about-title">About</h1>
           </div>
           <div className="about-body">
@@ -58,7 +58,7 @@ class About extends Component {
                 For more information about Michelle's platform or appearance requests, 
                 you may contact her at missmanahattan18@gmail.com
               </p>
-              <img class="about-image-2" src={Michelle}/>
+              <img class="about-image-2" src={Michelle} alt="michelle"/>
             </div>
             <div className={"webdev-info"}>
               <p>This website was developed and designed by Robert Ley. 

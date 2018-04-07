@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import EventBox from './EventBox'
 import Header from './Header'
+import config from "../config.json"
 
-// var server = "http://localhost:8080"
-var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
+// var server = "http://localhost:8081"
+var server = config.server
 
 class CityHome extends Component {
 
@@ -42,7 +43,8 @@ class CityHome extends Component {
         url: `${server}/getEvents`,
         headers: { 
             cityId: id,
-            upcoming: isUpcoming
+            upcoming: isUpcoming,
+            admin: "false"
         }
     }).then(function (response) {
         console.log(response)

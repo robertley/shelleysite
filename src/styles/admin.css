@@ -26,3 +26,16 @@
 .pending-events {
     text-align: center;
 }
+.pending-events-cityhome {
+    width: 1000px;
+    margin: 0 auto;
+}
+.create-event-link {
+    float:right;
+}
+.pending-events-cityhome h3 {
+    display: inline-block;
+}
+.remove-event-button {
+    margin-right: 10px;
+}

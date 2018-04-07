@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Header from './Header'
-import '../styles/createevent.css'
-import config from "../config.json"
+import Header from './../Header'
+import '../../styles/createevent.css'
+import config from "../../config.json"
+
+// TODO Fix Date bug
 
 // var server = "http://localhost:8081"
 var server = config.server
 
-class CreateEvent extends Component {
+class AdminEditEvent extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             image: null,
-            city: this.props.city,
+            city: "admin",
             cityId: this.props.cityId,
             cityPath: this.props.cityPath,
+            realCityPath: this.props.realCityPath,
             title: this.props.location.state === undefined ? "" : this.props.location.state.title,
             description: this.props.location.state === undefined ? "" : this.props.location.state.description,
             location: this.props.location.state === undefined ? "" : this.props.location.state.location,
@@ -27,16 +30,14 @@ class CreateEvent extends Component {
             imageLink: this.props.location.state === undefined ? "" : this.props.location.state.imageLink,
             pleaseWait: false,
             imageUploadFailed: false,
-            admin: this.props.admin,
-            cityName: this.props.cityName, // only used in admin mode
             isSignedIn: false
         }
         this.handleImageUpload = this.handleImageUpload.bind(this)
-        this.checkSignIn = this.checkSignIn.bind(this)
+        this.submitEvent = this.submitEvent.bind(this)
+        this.deleteEvent = this.deleteEvent.bind(this)
     }
-
     componentDidMount() {
-        if (!this.state.isSignedIn && this.state.admin)
+        if (!this.state.isSignedIn)
           this.checkSignIn()
     }
     checkSignIn() { // TODO make more secure
@@ -63,7 +64,7 @@ class CreateEvent extends Component {
             isSignedIn: true
           })
         }
-      }
+    }
     handleImageUpload(event) {
         // TODO image loading response
         event.preventDefault()
@@ -71,6 +72,7 @@ class CreateEvent extends Component {
             pleaseWait: true,
             imageUploadFailed: false
         })
+        console.log(event.target.files[0])
         var reader = new FileReader()
         var file = event.target.files[0]
         var self = this
@@ -82,6 +84,10 @@ class CreateEvent extends Component {
             })
         }
         reader.readAsDataURL(file)
+    }
+
+    hsubmit(event) {
+        event.preventDefault()
     }
 
     postToImgur() {
@@ -96,6 +102,7 @@ class CreateEvent extends Component {
                 'Authorization' : 'Client-ID ac3937fa56fc7e1',
             }
         }).then(response => {
+            console.log(response)
             this.setState({
                 imageLink: response.data.data.link,
                 pleaseWait: false
@@ -107,34 +114,6 @@ class CreateEvent extends Component {
                 imageUploadFailed: true
             })
         })
-    }
-
-    newCityState(city, cityPath, cityId) {
-        
-    }
-
-    goToConfirm() {
-        var url
-        if (this.state.admin)
-            url = `/admin/${this.state.cityPath}/ConfirmEvent`
-        else
-            url = `/${this.state.cityPath}/ConfirmEvent`
-        if (this.title.value !== "" && this.date.value !== "" && !this.state.pleaseWait)
-            this.props.history.push({
-                pathname: url,
-                state: {
-                    title: this.title.value,
-                    description: this.description.value,
-                    location: this.location.value,
-                    date: this.date.value,
-                    imageLink: this.state.imageLink,
-                    imageFileName: this.image.value,
-                    city: this.state.cityId,
-                    cause: this.cause.value,
-                    link: this.link.value,
-                    contact: this.contact.value
-                }
-            })
     }
 
     pleaseWaitRender() {
@@ -149,31 +128,67 @@ class CreateEvent extends Component {
                 <div className="upload-failed">Your image upload failed. Please try again or use a different image.</div>
             )
     }
-
-    renderCityNameWhenAdmin() {
-        if (this.state.admin) {
-            var city = this.state.cityName.toUpperCase()
-            return (
-                <span className="admin-city-name">{city}</span>
-            )
-        }
+    submitEvent(event) {
+        event.preventDefault()
+        console.log(this.title)
+        var self = this
+        axios({
+            method: 'POST',
+            url: `${server}/adminEditEvent`,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            data: { 
+                title: this.title.value.replace(/'/g, "\\'"), // 60 chars
+                description: this.description.value.replace(/'/g, "\\'"), // 1000 chars
+                location: this.location.value.replace(/'/g, "\\'"), // 60 char
+                date: this.date.value, // DATETIME
+                image: this.state.imageLink, // 120 chars
+                city: this.state.cityId, // 2 int
+                cause: this.cause.value.replace(/'/g, "\\'"), // 80 chars
+                link: this.link.value, // 60 chars
+                contact: this.contact.value.replace(/'/g, "\\'"), // 60 chars
+                id: this.props.match.params.event_id
+            }
+        }).then(function (response) {
+            self.props.history.push(`/admin/${self.state.realCityPath}`)
+        }).catch(function (error) {
+            console.log(error)
+        })
+    }
+    deleteEvent() {
+      if(window.confirm("Are you sure? This event will be premenently removed. FOREVER")) {
+        var self = this
+        axios({
+          method: 'GET',
+          url: `${server}/deleteEvent`,
+          headers: { 
+              eventId: self.props.match.params.event_id,
+          }
+        }).then(function (response) {
+            self.props.history.push(`/admin/${self.state.realCityPath}`)
+        }).catch(function (error) {
+            console.log(error)
+        })
+      }
     }
     
     render() {
-        if (!this.state.admin || this.state.isSignedIn)
+        if (this.state.isSignedIn)
         return (
             <div className="create-event">
                 <Header 
                     city = {this.state.city}
-                    cityPath = {this.state.cityPath}
+                    cityPath = "admin"
+                    //newCityState = {this.newCityState.bind(this)}
                     history = {this.props.history}
                 />
                 <div className="create-event-body">
                     <div className="create-event-header">
                         <span className="header-span">Create an Event </span><span className="required-desc1">*</span><span className="required-desc2"> - required</span>
-                        {this.renderCityNameWhenAdmin()}
                     </div>
-                    <form>
+                    <form onSubmit={this.submitEvent}>
                         <div className="forum-row-1">
                             <div className="forum-col-1">
                                 <span>Title: </span><span className="required">*</span>
@@ -211,7 +226,8 @@ class CreateEvent extends Component {
                             <input ref={(input) => this.image = input} type="file" accept="image/*" data-max-size="5000" onChange={this.handleImageUpload}/>
                             {this.pleaseWaitRender()}
                             {this.imageUploadFailedRender()}
-                            <button type="button" onClick={this.goToConfirm.bind(this)}>Finish</button>                        
+                            <button type="submit">Finish and Approve</button>
+                            <button type="button" className="remove-event-button" onClick={this.deleteEvent}>Remove Event</button>                        
                         </div>
                     </form>
                 </div>
@@ -221,4 +237,4 @@ class CreateEvent extends Component {
     }
 }
 
-export default CreateEvent
+export default AdminEditEvent

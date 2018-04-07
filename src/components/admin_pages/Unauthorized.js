@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Header from './Header'
-import '../styles/admin.css'
+import Header from './../Header'
+import '../../styles/admin.css'
 
 class Unauthorized extends Component {
 

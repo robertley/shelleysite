@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import '../styles/eventpage.css'
-import { Link } from 'react-router-dom'
 import { IntlProvider, FormattedDate } from 'react-intl'
 import axios from 'axios'
+import config from "../config.json"
 
-var server = "http://localhost:8080"
-// var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
+// var server = "http://localhost:8081"
+var server = config.server
+
+// TODO create Event doesnt exist page
 
 class EventPage extends Component {
   constructor(props) {
@@ -62,7 +64,7 @@ class EventPage extends Component {
 					// newCityState = {this.newCityState.bind(this)}
 				/>
         <div className="event-page-header">
-          <img className="header-image" src={this.state.image} />
+          <img className="header-image" src={this.state.image}/>
           <h1 className="header-title">{this.state.title}</h1>
         </div>
         <div className="event-page-body">

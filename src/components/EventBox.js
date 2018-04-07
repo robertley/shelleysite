@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import '../styles/eventbox.css'
 import { IntlProvider, FormattedDate } from 'react-intl'
 
@@ -33,7 +32,7 @@ class EventBox extends Component {
     return (
       <div className="event-box" onClick={this.goToEventPage.bind(this)}>
         <div className="event-box-image">
-          <img className="test" src={this.state.image} alt="image"/>
+          <img className="test" src={this.state.image} alt="image_"/>
         </div>
         {/* TODO text overflow ... */}
         <h3 className="event-title">{this.state.title}</h3>

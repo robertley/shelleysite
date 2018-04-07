@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import Header from './Header'
-import '../styles/admin.css'
+import { Link } from 'react-router-dom'
+import Header from './../Header'
+import '../../styles/admin.css'
 import axios from 'axios'
+import config from "../../config.json"
 
-var server = "http://localhost:8080"
-// var server = "http://shelleysiteapi-env.us-west-2.elasticbeanstalk.com"
+// var server = "http://localhost:8081"
+var server = config.server
 
 class AdminHome extends Component {
 
@@ -52,11 +54,13 @@ class AdminHome extends Component {
     }
   }
   getAdminInfo() {
+    console.log("getting admin info")
     var self = this
     axios({
       method: 'GET',
       url: `${server}/getAdminInfo`,
     }).then(function (response) {
+      console.log(response)
         self.setState({
           adminInfo: response.data
         })
@@ -87,9 +91,9 @@ class AdminHome extends Component {
     if (this.state.adminInfo !== null)
       return (
         <div className="pending-events">
-          <h3>Pending Events</h3>
-          <span>New York City ({this.state.adminInfo[0].count})</span><br/><br/>
-          <span>Philadelphia ({this.state.adminInfo[1].count})</span>
+          <h3>Pending Events:</h3>
+          <Link to={{pathname: "/admin/NewYorkCity"}}>New York City ({this.state.adminInfo[0].count})</Link><br/><br/>
+          <Link to={{pathname: "/admin/Philadelphia"}}>Philadelphia ({this.state.adminInfo[1] === undefined ? 0 : this.state.adminInfo[1].count})</Link>
         </div>
       )
   }

@@ -4,7 +4,6 @@ import './styles/app.css'
 import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import App from './App'
-import Header from './components/Header'
 import CreateEvent from './components/CreateEvent'
 import NotFound from './components/NotFound'
 import CityHome from './components/CityHome'
@@ -13,9 +12,12 @@ import Contact from './components/Contact'
 import ConfirmEvent from './components/ConfirmEvent'
 import EventPage from './components/EventPage'
 import DontSeeYourCity from './components/DontSeeYourCity'
-import Admin from './components/Admin'
-import AdminHome from './components/AdminHome'
-import Unauthorized from './components/Unauthorized'
+import Admin from './components/admin_pages/Admin'
+import AdminHome from './components/admin_pages/AdminHome'
+import Unauthorized from './components/admin_pages/Unauthorized'
+import AdminCityHome from './components/admin_pages/AdminCityHome'
+import AdminEventPage from './components/admin_pages/AdminEventPage'
+import AdminEditEvent from './components/admin_pages/AdminEditEvent'
 
 class Root extends React.Component {
 
@@ -45,6 +47,7 @@ class Root extends React.Component {
                                     cityId = {1}
                                     cityPath = "NewYorkCity"
                                     cityHome = {false}
+                                    admin = {false}
                                     {...props}
                                 />
                             }
@@ -56,6 +59,7 @@ class Root extends React.Component {
                                     cityId = {1}
                                     cityPath = "NewYorkCity"
                                     cityHome = {false}
+                                    admin = {false}
                                     {...props}
                                 />
                             }
@@ -88,6 +92,7 @@ class Root extends React.Component {
                                     cityId = {2}
                                     cityPath = "Philadelphia"
                                     cityHome = {false}
+                                    admin = {false}
                                     {...props}
                                 />
                             }
@@ -99,6 +104,7 @@ class Root extends React.Component {
                                     cityId = {2}
                                     cityPath = "Philadelphia"
                                     cityHome = {false}
+                                    admin = {false}
                                     {...props}
                                 />
                             }
@@ -154,6 +160,68 @@ class Root extends React.Component {
                         <Route exact path = "/admin/false" 
                             render={props => 
                                 <Unauthorized
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/admin/NewYorkCity" 
+                            render={props => 
+                                <AdminCityHome
+                                    cityName = "New York City"
+                                    cityPath = "admin" // used for header
+                                    realCityPath = "NewYorkCity"
+                                    cityId = {1}
+                                    cityHome = {false}
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/admin/NewYorkCity/CreateEvent" 
+                            render={props => 
+                                <CreateEvent
+                                    city = "admin"
+                                    cityName = "New York City"
+                                    cityPath = "admin"
+                                    cityId = {1}
+                                    cityHome = {false}
+                                    admin = {true}
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/admin/NewYorkCity/ConfirmEvent" 
+                            render={props => 
+                                <ConfirmEvent
+                                    city = "admin"
+                                    cityName = "New York City"
+                                    cityPath = "admin"
+                                    cityId = {1}
+                                    cityHome = {false}
+                                    admin = {true}
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/admin/NewYorkCity/:event_id" 
+                            render={props => 
+                                <AdminEventPage
+                                    cityName = "New York City"
+                                    cityPath = "admin"
+                                    realCityPath = "NewYorkCity"
+                                    cityId = {1}
+                                    cityHome = {false}
+                                    {...props}
+                                />
+                            }
+                        />
+                        <Route exact path = "/admin/NewYorkCity/EditEvent/:event_id" 
+                            render={props => 
+                                <AdminEditEvent
+                                    cityName = "New York City"
+                                    cityPath = "admin"
+                                    realCityPath = "NewYorkCity"                                    
+                                    cityId = {1}
+                                    cityHome = {false}
                                     {...props}
                                 />
                             }
