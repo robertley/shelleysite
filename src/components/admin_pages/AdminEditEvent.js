@@ -5,6 +5,7 @@ import '../../styles/createevent.css'
 import config from "../../config.json"
 
 // TODO Fix Date bug
+// TODO implement start/end date
 
 // var server = "http://localhost:8081"
 var server = config.server

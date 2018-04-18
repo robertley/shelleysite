@@ -108,3 +108,7 @@ p {
 .admin-city-name {
   float: right;
 }
+
+.temp-until-time {
+  float: right;
+}

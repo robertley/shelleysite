@@ -18,10 +18,12 @@ class ConfirmEvent extends Component {
             city: this.props.city,
             cityId: this.props.cityId,
             cityPath: this.props.cityPath,
+            cityPathAdmin: this.props.cityPathAdmin,
             title: this.props.location.state.title,
             description: this.props.location.state.description,
             location: this.props.location.state.location,
-            date: this.props.location.state.date,
+            startDate: this.props.location.state.startDate,
+            endDate: this.props.location.state.endDate,
             imageLink: this.props.location.state.imageLink,
             cause: this.props.location.state.cause,
             link: this.props.location.state.link,
@@ -83,7 +85,8 @@ class ConfirmEvent extends Component {
                 title: this.state.title.replace(/'/g, "\\'"), // 60 chars
                 description: this.state.description.replace(/'/g, "\\'"), // 1000 chars
                 location: this.state.location.replace(/'/g, "\\'"), // 60 char
-                date: this.state.date, // DATETIME
+                startDate: this.state.startDate, // DATETIME
+                endDate: this.state.endDate, // DATETIME
                 image: this.state.imageLink, // 120 chars
                 city: this.state.cityId, // 2 int
                 cause: this.state.cause.replace(/'/g, "\\'"), // 80 chars
@@ -117,7 +120,8 @@ class ConfirmEvent extends Component {
                 title: this.state.title,
                 description: this.state.description,
                 location: this.state.location,
-                date: this.state.date,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate,
                 imageLink: this.state.imageLink,
                 city: this.state.cityId,
                 cause: this.state.cause,
@@ -143,7 +147,7 @@ class ConfirmEvent extends Component {
                         <div className="confirm-field"><span className="confirm-category">Date: </span><span>
                             <IntlProvider locale="en">
                             <FormattedDate 
-                                value={this.state.date} 
+                                value={this.state.startDate} 
                                 day="numeric"
                                 month="long"
                                 year="numeric"
@@ -177,7 +181,7 @@ class ConfirmEvent extends Component {
             <div className="create-event">
                 <Header 
                     city = {this.state.city}
-                    cityPath = {this.state.cityPath}
+                    cityPath = {this.state.cityPathAdmin}
                     //newCityState = {this.newCityState.bind(this)}
                     history = {this.props.history}
                 />

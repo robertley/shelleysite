@@ -16,8 +16,9 @@
 }
 .header-image {
     object-fit: cover;
-  height: 300px;
-  width: 1000px;
+    height: 300px;
+    width: 1000px;
+    cursor: pointer;
 }
 .header-title {
     position: absolute;

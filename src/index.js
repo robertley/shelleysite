@@ -181,7 +181,8 @@ class Root extends React.Component {
                                 <CreateEvent
                                     city = "admin"
                                     cityName = "New York City"
-                                    cityPath = "admin"
+                                    cityPath = "NewYorkCity"
+                                    cityPathAdmin = "admin"
                                     cityId = {1}
                                     cityHome = {false}
                                     admin = {true}
@@ -194,7 +195,8 @@ class Root extends React.Component {
                                 <ConfirmEvent
                                     city = "admin"
                                     cityName = "New York City"
-                                    cityPath = "admin"
+                                    cityPath = "NewYorkCity"
+                                    cityPathAdmin ="admin"
                                     cityId = {1}
                                     cityHome = {false}
                                     admin = {true}

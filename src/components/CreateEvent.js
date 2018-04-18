@@ -16,6 +16,7 @@ class CreateEvent extends Component {
             city: this.props.city,
             cityId: this.props.cityId,
             cityPath: this.props.cityPath,
+            cityPathAdmin: this.props.cityPathAdmin,
             title: this.props.location.state === undefined ? "" : this.props.location.state.title,
             description: this.props.location.state === undefined ? "" : this.props.location.state.description,
             location: this.props.location.state === undefined ? "" : this.props.location.state.location,
@@ -73,19 +74,28 @@ class CreateEvent extends Component {
         })
         var reader = new FileReader()
         var file = event.target.files[0]
+        var extension = file.type.split('/').pop().toLowerCase()
+        console.log(extension)
         var self = this
         reader.onload = function(upload) {
             self.setState({
                 image: upload.target.result
             }, function() {
-                self.postToImgur()
+                self.postToImgur(extension)
             })
         }
         reader.readAsDataURL(file)
     }
 
-    postToImgur() {
-        var imageToken = this.state.image.substring(23, (this.state.image.length-1))
+    postToImgur(ext) {
+        var charClipQ
+        if (ext === "png")
+            charClipQ = 22
+        else
+            charClipQ = 23
+
+        var imageToken = this.state.image.substring(charClipQ, (this.state.image.length-1))
+        
         axios({
             method: 'POST',
             url: 'https://api.imgur.com/3/image',
@@ -93,7 +103,7 @@ class CreateEvent extends Component {
                 image: imageToken,
             },
             headers: {
-                'Authorization' : 'Client-ID ac3937fa56fc7e1',
+                'Authorization' : 'Client-ID f7541e1f6c471fb',
             }
         }).then(response => {
             this.setState({
@@ -119,14 +129,15 @@ class CreateEvent extends Component {
             url = `/admin/${this.state.cityPath}/ConfirmEvent`
         else
             url = `/${this.state.cityPath}/ConfirmEvent`
-        if (this.title.value !== "" && this.date.value !== "" && !this.state.pleaseWait)
+        if (this.title.value !== "" && this.startDate.value !== "" && !this.state.pleaseWait)
             this.props.history.push({
                 pathname: url,
                 state: {
                     title: this.title.value,
                     description: this.description.value,
                     location: this.location.value,
-                    date: this.date.value,
+                    startDate: this.startDate.value,
+                    endDate: this.endDate.value,
                     imageLink: this.state.imageLink,
                     imageFileName: this.image.value,
                     city: this.state.cityId,
@@ -165,7 +176,7 @@ class CreateEvent extends Component {
             <div className="create-event">
                 <Header 
                     city = {this.state.city}
-                    cityPath = {this.state.cityPath}
+                    cityPath = {this.state.cityPathAdmin}
                     history = {this.props.history}
                 />
                 <div className="create-event-body">
@@ -185,10 +196,12 @@ class CreateEvent extends Component {
                             </div>
                             <div className="forum-col-date">
                                 <span>Date/Time: </span><span className="required">* </span><span className="subtitle"> mm/dd/yyyy hh:mm AM/PM</span>
-                                <input className="date-input" ref={(input) => {this.date = input}}  type="datetime-local" required defaultValue={this.state.date}/>
+                                <input className="date-input" ref={(input) => {this.startDate = input}}  type="datetime-local" required defaultValue={this.state.date}/>
                             </div>
                         </div>
                         <div className="forum-row-2">
+                            <span className="temp-until-time">Until<br/>
+                            <input className="date-input" ref={(input) => {this.endDate = input}}  type="datetime-local" required defaultValue={this.state.date}/></span>
                             <p>Description:</p>
                             <textarea ref={(input) => {this.description = input}} defaultValue={this.state.description}/>
                         </div>

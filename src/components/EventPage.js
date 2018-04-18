@@ -4,12 +4,12 @@ import '../styles/eventpage.css'
 import { IntlProvider, FormattedDate } from 'react-intl'
 import axios from 'axios'
 import config from "../config.json"
+import Moment from 'moment'
 
 // var server = "http://localhost:8081"
 var server = config.server
 
 // TODO create Event doesnt exist page
-
 class EventPage extends Component {
   constructor(props) {
     super(props)
@@ -55,6 +55,8 @@ class EventPage extends Component {
     })
   }
 	render() {
+    Moment.locale('en')
+    Moment().add(4, 'h')
 		return (
 			<div className="event-page">
 				<Header 
@@ -64,21 +66,11 @@ class EventPage extends Component {
 					// newCityState = {this.newCityState.bind(this)}
 				/>
         <div className="event-page-header">
-          <img className="header-image" src={this.state.image}/>
+          <img className="header-image" src={this.state.image} onClick={()=> window.open(this.state.image, "_blank")}/>
           <h1 className="header-title">{this.state.title}</h1>
         </div>
         <div className="event-page-body">
-          <span className="title">Date/Time: </span>
-            <IntlProvider locale="en">
-              <FormattedDate 
-                value={this.state.date} 
-                day="numeric"
-                month="long"
-                year="numeric"
-                hour="numeric"
-                minute="numeric"
-              /> 
-            </IntlProvider><br/><br/>
+          <span className="title">Date/Time: </span><span>{Moment(this.state.date).format('LLL')}</span><br/><br/>
           <span className="title">Location: </span>{this.state.location}<br/><br/>
           <span className="title">Cause: </span>{this.state.cause}<br/><br/>
           <span className="title">Description: </span><br/>{this.state.description}<br/><br/>

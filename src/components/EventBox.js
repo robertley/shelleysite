@@ -9,7 +9,7 @@ class EventBox extends Component {
       cause: this.props.data.cause,
       city: this.props.data.city,
       contact: this.props.data.contact,
-      date: this.props.data.date,
+      date: this.props.data.start_date,
       // date: "March 28th, 3:00 PM",
       description: this.props.data.description,
       image: this.props.data.image,
@@ -27,6 +27,27 @@ class EventBox extends Component {
         data: this.state
       }
     })
+  }
+  renderContact() {
+    if (this.state.contact !== "")
+      return (
+        <span><span className="title">Contact: </span>{this.state.contact}</span>
+      )
+    else return null
+  }
+  renderCause() {
+    if (this.state.cause !== "")
+      return (
+        <div className="event-cause"><span className="title">Cause: </span><span>{this.state.cause}</span></div>
+      )
+    else return null
+  }
+  renderLocation() {
+    if (this.state.location !== "")
+      return (
+        <div className="event-location"><span className="title">Location: </span><span>{this.state.location}</span></div>
+      )
+    else return null
   }
   render() {
     return (
@@ -47,14 +68,14 @@ class EventBox extends Component {
           </h3></IntlProvider>
         <br/>
         <div className="row-2">
-          <div className="event-cause"><span className="title">Cause: </span><span>{this.state.cause}</span></div>
-          <div className="event-location"><span className="title">Location: </span><span>{this.state.location}</span></div>
+          {this.renderCause()}
+          {this.renderLocation()}
         </div>
         <div className="row-3">
           {this.state.description}
         </div>
         <div className="row-4">
-          <span className="title">Contact: </span><span>{this.state.contact}</span>
+          {this.renderContact()}
         </div>
       </div>
     )
